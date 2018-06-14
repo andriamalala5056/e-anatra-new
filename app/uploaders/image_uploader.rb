@@ -19,11 +19,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
   #
    # "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-   "https://via.placeholder.com/50x50"
+   "https://image.noelshack.com/fichiers/2018/24/4/1528956316-default-profil-e-anatra.png"
   end
 
   # Process files as they are uploaded:
-   process scale: [200, 300]
+   process scale: [300, 300]
   #
    def scale(width, height)
     resize_to_fill width, height
@@ -32,11 +32,12 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
    version :thumb do 
-     process resize_to_fill: [100, 100]
+    
+     process resize_to_fill: [80, 80]
    end
 
    version :large do 
-    process resize_to_fill: [600,6000]
+    process resize_to_fill: [600,600]
    end
 
   # Add a white list of extensions which are allowed to be uploaded.

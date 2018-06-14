@@ -17,16 +17,6 @@
                             <button class="btn btn-primary btn-lg" type="button">Recherche</button>
                             </span>
                          </div>
-                         <div class="search-in">
-                            <div class="radio-box">
-                               <input type="radio" name="searchin" value="rent" id="rent22">
-                               <label class="radio-inline" for="rent22">For Rent</label>
-                            </div>
-                            <div class="radio-box">
-                               <input type="radio" name="searchin" value="sell" id="sell22" checked>
-                               <label class="radio-inline" for="sell22" >For Sell</label>
-                            </div>
-                         </div>
                       </div>
                    </div>
                 </form>
@@ -72,88 +62,62 @@
           </div>
        </div>
     </div>
-    <div class="feature-box centered gray">
+
+
+
+
+
+      <div class="feature-box gray centered">
        <div>
           <div class="container">
              <div class="row justify-content-md-center">
                 <div class="col col-lg-12 col-xl-10">
-                   <div class="item-listing grid">
-                      <div class="main-title"><span>Ajoutées récements</span></div>
-                      <div class="main-title-description">Ce liste n'affiche que ceux qui sont ajoutées en dernnier.</div>
+                   <div class="main-title"><span>Quelque un de nos établissements </span></div>
+                   <div class="item-listing grid mb50">
                       <div class="row">
-                         <div class="col-md-4">
+
+                        <!-- 3 ETABLISSEMENT HOME -->
+                        <% @etablissements.each do |etab| %>
+                        <a href="<%= etablissement_path(etab.id) %>">
+                          <div class="col-md-4">
                             <div class="item">
-                               <div class="item-image">
-                                  <a href="property_single.html">
-                                     <img src="img/demo/property/1.jpg" class="img-fluid" alt="">
-                                     <div class="item-meta">
-                                        <div class="item-price">$420,000 <small>$777 / sq m</small> </div>
-                                     </div>
-                                     <div class="item-badges">
-                                        <div class="item-badge-left">Sponsored</div>
-                                        <div class="item-badge-right">For Sale</div>
-                                     </div>
-                                  </a>
-                                  <a href="index.html#" class="save-item"><i class="fa fa-star"></i></a> 
-                               </div>
-                               <div class="item-info">
-                                  <h3 class="item-title">3 bed semi-detached house</h3>
-                                  <div class="item-location"><i class="fa fa-map-marker"></i> Kirkstone Road, Middlesbrough TS3</div>
-                                  <div class="item-details-i"> <span class="bedrooms" data-toggle="tooltip" title="3 Bedrooms">3 <i class="fa fa-bed"></i></span> <span class="bathrooms" data-toggle="tooltip" title="2 Bathrooms">2 <i class="fa fa-bath"></i></span> </div>
-                               </div>
+                              <div class="item-image">
+                                  <%= image_tag etab.image_etablissement.url(:thumb), class: "img-fluid" %>
+                                  <% if etab.category? %>
+                                  <div class="item-badges">
+                                    <div class="item-badge-left"><%= etab.category %></div>
+                                  </div>
+                                  <% end %>
+                                <a href="<%= etablissement_path(etab.id) %>"></a>
+                              </div>
+                            <div class="item-info">
+                              <h3 class="item-title"><%= etab.nom %></h3>
+                              <div class="item-location"><i class="fa fa-map-marker"></i>&nbsp;
+                                <%= etab.adress %></div>
+                                 <a href="<%= likes_path(etab)%>">
+                              <div class="item-details-i"><i class="fa fa-thumbs-up"></i>&nbsp;
+                              <%= etab.likers_count %> </div>
+                                 </a>
                             </div>
-                         </div>
-                         <div class="col-md-4">
-                            <div class="item">
-                               <div class="item-image">
-                                  <a href="property_single.html">
-                                     <img src="img/demo/property/2.jpg" class="img-fluid" alt="">
-                                     <div class="item-meta">
-                                        <div class="item-price">$420,000 <small>$777 / sq m</small> </div>
-                                     </div>
-                                     <div class="item-badges">
-                                        <div class="item-badge-left">Sponsored</div>
-                                        <div class="item-badge-right">For Sale</div>
-                                     </div>
-                                  </a>
-                                  <a href="index.html#" class="save-item"><i class="fa fa-star"></i></a> 
-                               </div>
-                               <div class="item-info">
-                                  <h3 class="item-title">3 bed semi-detached house</h3>
-                                  <div class="item-location"><i class="fa fa-map-marker"></i> Kirkstone Road, Middlesbrough TS3</div>
-                                  <div class="item-details-i"> <span class="bedrooms" data-toggle="tooltip" title="3 Bedrooms">3 <i class="fa fa-bed"></i></span> <span class="bathrooms" data-toggle="tooltip" title="2 Bathrooms">2 <i class="fa fa-bath"></i></span> </div>
-                               </div>
                             </div>
-                         </div>
-                         <div class="col-md-4">
-                            <div class="item">
-                               <div class="item-image">
-                                  <a href="property_single.html">
-                                     <img src="img/demo/property/3.jpg" class="img-fluid" alt="">
-                                     <div class="item-meta">
-                                        <div class="item-price">$420,000 <small>$777 / sq m</small> </div>
-                                     </div>
-                                     <div class="item-badges">
-                                        <div class="item-badge-left">Sponsored</div>
-                                        <div class="item-badge-right">For Sale</div>
-                                     </div>
-                                  </a>
-                                  <a href="index.html#" class="save-item"><i class="fa fa-star"></i></a> 
-                               </div>
-                               <div class="item-info">
-                                  <h3 class="item-title">3 bed semi-detached house</h3>
-                                  <div class="item-location"><i class="fa fa-map-marker"></i> Kirkstone Road, Middlesbrough TS3</div>
-                                  <div class="item-details-i"> <span class="bedrooms" data-toggle="tooltip" title="3 Bedrooms">3 <i class="fa fa-bed"></i></span> <span class="bathrooms" data-toggle="tooltip" title="2 Bathrooms">2 <i class="fa fa-bath"></i></span> </div>
-                               </div>
-                            </div>
-                         </div>
+                          </div>
+                        </a>
+                        <% end %>
+                        <!-- 3 ETABLISSEMENT HOME END -->
+
                       </div>
                    </div>
+                   <div class="text-center"><a href="/etablissements" class="btn btn-xlg btn-link">Voir tout</a></div>
                 </div>
              </div>
           </div>
        </div>
     </div>
+
+
+
+
+
     <div class="feature-box centered">
        <div>
           <div class="container">
@@ -216,101 +180,3 @@
           </div>
        </div>
     </div>
-    <div class="feature-box gray centered">
-       <div>
-          <div class="container">
-             <div class="row justify-content-md-center">
-                <div class="col col-lg-12 col-xl-10">
-                   <div class="main-title"><span>News &amp; Updates </span></div>
-                   <div class="main-title-description">Stay up to date with the latest happenings.</div>
-                   <div class="item-listing grid mb50">
-                      <div class="row">
-                         <div class="col-md-4">
-                            <div class="item">
-                               <div class="item-image">
-                                  <a href="blog_single.html">
-                                     <img src="img/demo/property/7.jpg" class="img-fluid" alt="">
-                                     <div class="item-meta">
-                                        <div class="item-price"><small>26th Oct 17</small> </div>
-                                     </div>
-                                     <div class="item-badges">
-                                        <div class="item-badge-right">Legal</div>
-                                     </div>
-                                  </a>
-                               </div>
-                               <div class="item-info">
-                                  <h3 class="item-title">Allianz invests 100m in Hines European Value Fund</h3>
-                                  <div class="item-comments-count"><i class="fa fa-comment-o"></i> 3</div>
-                                  <div class="item-author">By John Doe</div>
-                               </div>
-                            </div>
-                         </div>
-                         <div class="col-md-4">
-                            <div class="item">
-                               <div class="item-image">
-                                  <a href="blog_single.html">
-                                     <img src="img/demo/property/8.jpg" class="img-fluid" alt="">
-                                     <div class="item-meta">
-                                        <div class="item-price"><small>26th Oct 17</small> </div>
-                                     </div>
-                                     <div class="item-badges">
-                                        <div class="item-badge-right">Development</div>
-                                     </div>
-                                  </a>
-                               </div>
-                               <div class="item-info">
-                                  <h3 class="item-title">Skanska signs 43.2m construction deal in Sollentuna</h3>
-                                  <div class="item-comments-count"><i class="fa fa-comment-o"></i> 3</div>
-                                  <div class="item-author">By John Doe</div>
-                               </div>
-                            </div>
-                         </div>
-                         <div class="col-md-4">
-                            <div class="item">
-                               <div class="item-image">
-                                  <a href="blog_single.html">
-                                     <img src="img/demo/property/9.jpg" class="img-fluid" alt="">
-                                     <div class="item-meta">
-                                        <div class="item-price"><small>26th Oct 17</small> </div>
-                                     </div>
-                                     <div class="item-badges">
-                                        <div class="item-badge-right category">Finance</div>
-                                     </div>
-                                  </a>
-                               </div>
-                               <div class="item-info">
-                                  <h3 class="item-title">Baltic Horizon Fund plans next public offering of new units</h3>
-                                  <div class="item-comments-count"><i class="fa fa-comment-o"></i> 3</div>
-                                  <div class="item-author">By John Doe</div>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="text-center"><a href="index.html#" class="btn btn-xlg btn-link">View All</a></div>
-                </div>
-             </div>
-          </div>
-       </div>
-    </div>
-    <div class="feature-box centered pb0">
-       <div>
-          <div class="container">
-             <div class="row justify-content-md-center">
-                <div class="col col-lg-10 col-xl-10">
-                   <div class="row">
-                      <div class="col-md-6">
-                         <div class="text-center mt50 mb50">
-                            <div class="main-title"><span>Connect with us from anywhere</span></div>
-                            <div class="main-title-description">Download the mobile app and enjoy the smoothest experience</div>
-                            <img src="img/store/apple.svg" width="120" alt=""> <img src="img/store/google.svg" width="120" alt=""> 
-                         </div>
-                      </div>
-                      <div class="col-md-6"> <img src="img/demo/mobile-app-hero.png" class="img-fluid" alt=""> </div>
-                   </div>
-                </div>
-             </div>
-          </div>
-       </div>
-    </div>
- </div>

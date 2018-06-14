@@ -142,11 +142,7 @@ function setPosition(marker){
 
                       <div class="form-group">
                          <h3 class="subheadline">Uploader un fichier .pdf contenant la liste des dossiers à fournir</h3>
-                         <div class="ui-dropzone">
-                            <div class="icon"></div>
-                            <div>Drag and drop your file or click to upload</div>
-                            <%= f.file_field :dossier_a_fournir, class: "form-control form-control-lg", id: "gallery" %>
-                         </div>
+                            <%= f.file_field :dossier_a_fournir %>
                       </div>
                       <hr>
                       <div class="form-group">

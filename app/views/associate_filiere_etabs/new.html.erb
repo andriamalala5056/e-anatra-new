@@ -1,0 +1,21 @@
+<div class="container">
+    <%= form_for @assoc_fil_etab  do |f| %>
+
+        <fieldset class="form-group">
+            <label for="filiere">Filiere</label>
+            <%= f.collection_select :filiere_id, Filiere.order(:nom), :id, :nom, include_blank: true %>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="niveau">Level</label>
+            <%= f.collection_select :level_id, Level.order(:niveau), :id, :niveau, include_blank: true %>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="place">Nombre de place</label>
+            <%= f.number_field :place %>
+        </fieldset>
+
+        <%= f.submit "Ajouter", class: "btn btn-primary" %>
+    <% end %>
+</div>

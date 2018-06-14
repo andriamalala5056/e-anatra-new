@@ -3,14 +3,59 @@
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
 <%= f.hidden_field :reset_password_token %>
 
-<div class="login-page">
-  <div class="form-log">
-    <form class="login-form">
-      <%= f.password_field :password, autofocus: true, autocomplete: "off", placeholder: "Nouveau mot de passe" %>
-      <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Confirmez votre mot de passe" %>
-      <button type="submit">Changer</button>
-      <p class="message">Pas encore membre? <a href="/users/sign_up">Créer un compte</a></p>
-      <p class="message"><a href="/users/sign_in">Se connecter</a></p>
-    </form>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col col-md-12 col-lg-10 col-xl-8">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Account</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Changer le mot de passe</li>
+        </ol>
+      </nav>
+      <div class="page-header">
+        <h1>Changer le mot de passe</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="content">
+  <div class="container">
+    <div class="row justify-content-md-center align-items-center">
+      <div class="col col-md-12 col-lg-10 col-xl-8">
+        <ul class="nav nav-tabs tab-lg" role="tablist">
+          <li role="presentation" class="nav-item"><a class="nav-link" href="/users/sign_in">Sign In</a></li>
+          <li role="presentation" class="nav-item"><a class="nav-link" href="/users/sign_up">Créer un compte</a></li>
+          <li role="presentation" class="nav-item"><a class="nav-link active" href="register.html">Récupérer le mot de passe</a></li>
+        </ul>
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="login">
+            <form>
+               
+               <div class="row login-row">
+                  <div class="col">
+                  	 <%= f.password_field :password, autofocus: true, autocomplete: "off", placeholder: "Nouveau mot de passe", class: "form-control form-control-lg" %>
+                  </div>
+               </div>
+
+               <div class="row login-row">
+                  <div class="col">
+                  	 <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Confirmez votre mot de passe", class: "form-control form-control-lg" %>
+                  </div>
+               </div>
+               
+               <div class="row">
+                  <div class="col">
+                     <button type="submit" class="btn btn-primary btn-lg">Changer</button>
+                  </div>
+                  <div class="col">
+                  </div>
+               </div>
+            </form>
+          </div>
+        </div>
+        <div> </div>
+      </div>
+    </div>
   </div>
 </div>

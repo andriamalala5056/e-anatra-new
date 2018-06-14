@@ -1,42 +1,42 @@
+
 <div class="container">
    <div class="search-form">
-      <div class="card">
-         <div class="row">
-            <div class="col-lg-6">
-               <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" placeholder="Etablissement, Ecole, Adresse">
-               </div>
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-9">
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" placeholder="Etablissement, Ecole, Adresse, Catégorie">
+                </div>
+                </div>
+                <div class="col-sm-3">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">Chercher</button>
+                </div>
+                </div>
             </div>
-            <div class="col-lg-6">
-               <div class="row">
-                  <div class="col-sm-7">
-                     <div class="form-group">
-                        <select class="form-control form-control-lg ui-select" data-placeholder="Catégorie...">
-                           <option value="Universités">Universités</option>
-                           <option value="Enseignements générale">Enseignements générale</option>
-                           <option value="Musiques">Musiques</option>
-                        </select>
-                     </div>
-                  </div>
-                  <div class="col-sm-5">
-                     <div class="form-group">
-                        <button type="submit" class="btn btn-lg btn-primary btn-block">Search</button>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
+        </div>
    </div>
 </div>
+
+<% if user_signed_in? %>
+<div>
+    <% if current_user.role=="responsable" %>
+        <% if session[:etab_id] != nil %>    
+            <a href="<%= etablissement_path(session[:etab_id]) %>">Votre établissement</a>
+        <% else %>
+            <a href="<%= new_etablissement_path %>">Créer votre établissement</a>
+        <% end %>
+    <% end %>
+</div>
+<% end %>
+
 <div class="container">
    <div class="row justify-content-md-center">
       <div class="col col-lg-12 col-xl-10">
          <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-               <li class="breadcrumb-item"><a href="property_grid.html#">Home</a></li>
-               <li class="breadcrumb-item"><a href="property_grid.html#">Property for sale</a></li>
-               <li class="breadcrumb-item active" aria-current="page">North Yorkshire</li>
+               <li class="breadcrumb-item"><a href="/">Home</a></li>
+               <li class="breadcrumb-item"><a href="/etablissements">Etablissements</a></li>
             </ol>
          </nav>
       </div>
@@ -141,27 +141,27 @@
                   <div class="item-listing grid">
                      <div class="row">
                         <!-- INDEX FOR ETAB START -->
-                        
-                        
                         <% @etablissements.each do |etab| %>
                         <a href="<%= etablissement_path(etab.id) %>">
                         	<div class="col-lg-6">
                         		<div class="item">
                         			<div class="item-image">
-                        				<img src="img/demo/property/1.jpg" class="img-fluid" alt="">
-                        					<div class="item-meta">
-                        						<div class="item-price">$420,000 <small>$777 / sq m</small> </div>
-                        					</div>
+                        					<%= image_tag etab.image_etablissement.url(:thumb), class: "img-fluid" %>
+                        					<% if etab.category? %>
                         					<div class="item-badges">
                         						<div class="item-badge-left"><%= etab.category %></div>
-                        						<div class="item-badge-right">For Sale</div>
                         					</div>
-                        				<a href="<%= etablissement_path(etab.id) %>" class="save-item"><i class="fa fa-star"><%= etab.likers_count %></i></a>
+                        					<% end %>
+                        				<a href="<%= etablissement_path(etab.id) %>"></a>
                         			</div>
                     				<div class="item-info">
                     					<h3 class="item-title"><%= etab.nom %></h3>
-                    					<div class="item-location"><i class="fa fa-map-marker"></i> <%= etab.adress %></div>
-                    					<div class="item-details-i"> <span class="bedrooms" data-toggle="tooltip" title="3 Bedrooms">3 <i class="fa fa-bed"></i></span> <span class="bathrooms" data-toggle="tooltip" title="2 Bathrooms">2 <i class="fa fa-bath"></i></span> </div>
+                    					<div class="item-location"><i class="fa fa-map-marker"></i>&nbsp;
+<%= etab.adress %></div>
+                                 <a href="<%= likes_path(etab)%>">
+                    					<div class="item-details-i"><i class="fa fa-thumbs-up"></i>&nbsp;
+<%= etab.likers_count %> </div>
+                                 </a>
                     				</div>
                         		</div>
                         	</div>

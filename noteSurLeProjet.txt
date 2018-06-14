@@ -12,10 +12,20 @@ un responsable gere un et un seul établissement(créer, modifier, supprimer)
             et de même pour filière_niveau)
         - créer son établissement
         - créer les filières existe dans établissement (bdd: créer en même temps dans le controller, 
-            dabord le filière et après la table relation filiere_etab)
-        - créer(rélier) les niveaux éxistant dans cette filière (bdd: dans la table filiere_niveauSup)
+            dabord le filière et après la table relation filiere_etab en fonctin de niveau et nombre de place)
 
 Un visiteur peut voir tout les établissement (liste, recherche)(sans inscription)
 
 Un étudiant(visiteur aussi) peut s'inscrire sur le site, et après s'inscrire sur l'établissement qu'il lui convient
 
+(sur index :
+    afficher les dérnier 3 étabs ajouter
+    afficher plus d'étab en cliquant sur le boutons
+    faire de recherche en fonction d'etablissement->filiere
+
+EN TANT QUE RESPONSABLE D ETABLISSEMENT : 
+    Je crées mon étab
+    Sur mon page show etab: 
+        j'ai un lien pour créer un articles pour mon étab
+        j'ai un lien pour créer mes filières 
+        

@@ -12,11 +12,11 @@
         <td><%= a.titre %></td>
         <td><%= a.message %></td>
         <td><%= a.photo %></td> 
-        <td><%= link_to "Modifier", edit_article_path(a.id), class: "btn btn-info" %></td>
-        <td>
-            <a href="<%= article_path(a.id) %>" class="btn btn-danger" data-confirm="Êtes vous sur ?" data-method="DELETE">Supprimer</a>
-        </td>
+        
     </tr>
 <% end %>
 </table>
-<a href="<%= new_article_path %>">Créer new article</a>
+<% if session[:responsable] %>
+    <a href="<%= new_article_path %>">Créer new article</a>
+    <a href="<%= article_path(session[:etab_id]) %>">Voir mes articles</a>
+<% end %>

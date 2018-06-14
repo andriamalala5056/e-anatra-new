@@ -1,2 +1,17 @@
 <h1>Articles#show</h1>
-<p>Find me in app/views/articles/show.html.erb</p>
+<table>
+    <thead>
+        <th>TIRE</th><th>MESSAGE</th><th>PHOTO</th><th></th><th></th>
+    </thead>
+    <% @article.each do |a| %>
+        <tr>
+            <td><%= a.titre %></td>
+            <td><%= a.message %></td>
+            <td><%= a.photo %></td>
+            <td><%= link_to "Modifier", edit_article_path(a.id), class: "btn btn-info" %></td>
+            <td>
+                <a href="<%= article_path(a.id) %>" class="btn btn-danger" data-confirm="Êtes vous sur ?" data-method="DELETE">Supprimer</a>
+            </td>
+            </tr>
+    <% end %>
+</table>

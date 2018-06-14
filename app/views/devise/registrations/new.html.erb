@@ -7,8 +7,8 @@
     <div class="col col-md-12 col-lg-10 col-xl-8">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="register.html#">Home</a></li>
-          <li class="breadcrumb-item"><a href="register.html#">Account</a></li>
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Account</a></li>
           <li class="breadcrumb-item active" aria-current="page">Register</li>
         </ol>
       </nav>
@@ -82,7 +82,8 @@
 
                <div class="row login-row">
                   <div class="col">
-                     <%= f.file_field :image, autocomplete: "off", class: "form-control form-control-lg", placeholder: "pas d'image" %>
+                  Importer une photo de profil<br>
+                     <%= f.file_field :image, autocomplete: "off", placeholder: "pas d'image" %>
                   </div>
                </div>
                
