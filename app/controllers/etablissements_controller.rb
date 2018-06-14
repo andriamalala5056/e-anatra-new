@@ -2,7 +2,7 @@ class EtablissementsController < ApplicationController
   before_action :get_id, only: [:show, :update]
 
   def index
-    @etablissements = Etablissement.page(params[:page]).per(5)
+     @etablissements = Etablissement.page(params[:page]).per(5)
   end
 
   def show

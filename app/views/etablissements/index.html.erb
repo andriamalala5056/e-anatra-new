@@ -141,7 +141,7 @@
                   <div class="item-listing grid">
                      <div class="row">
                         <!-- INDEX FOR ETAB START -->
-                        <%= @etablissements.each do |etab| %>
+                        <% @etablissements.each do |etab| %>
                         <a href="<%= etablissement_path(etab.id) %>">
                         	<div class="col-lg-6">
                         		<div class="item">
