@@ -100,10 +100,10 @@
 												<li class="title">Filière</li>
 												<% if session[:etab_id] != nil %>
 													<li>
-														<a href="<%= new_filiere_path %>">Ajouter filière</a>
+														<a href="<%= new_associate_filiere_etab_path %>">Ajouter filière</a>
 													</li>
 													<li>
-														<a href="<%= filiere_path(session[:etab_id]) %>">Vos filières</a>
+														<a href="<%= associate_filiere_etab_path(session[:etab_id]) %>">Vos filières</a>
 													</li>
 
 												<% end %>
