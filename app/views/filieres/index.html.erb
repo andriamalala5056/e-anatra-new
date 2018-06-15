@@ -11,19 +11,24 @@
     <tr>
         <td><%= f.nom %></td>
         <td><%= Date.parse(f.created_at.to_s).strftime('%a %d %b %Y') %></td> 
-
-        <td><%= link_to "Modifier", edit_filiere_path(f.id), class: "btn btn-info" %></td>
-        <td>
-            <a href="<%= filiere_path(f.id) %>" class="btn btn-danger" data-confirm="Êtes vous sur ?" data-method="DELETE">Supprimer</a>
-        </td>
+        <% if user_signed_in? %>
+            <% if current_user.role=="admin" %>
+                <td><%= link_to "Modifier", edit_filiere_path(f.id), class: "btn btn-info" %></td>
+                <td>
+                    <a href="<%= filiere_path(f.id) %>" class="btn btn-danger" data-confirm="Êtes vous sur ?" data-method="DELETE">Supprimer</a>
+                </td>
+            <% end %>
+        <% end %>
 
     </tr>
 <% end %>
 </table>
 <% if session[:responsable] %>
+<% if session[:etab_id] != nil %>
 <h2>
     <a href="<%= new_filiere_path %>">Créer new filières</a>
 </h2>
+<% end %>
 <h2>
     <a href="<%= associate_filiere_etabs_path %>">Voir tous les filières de votre établissement</a>
 </h2>

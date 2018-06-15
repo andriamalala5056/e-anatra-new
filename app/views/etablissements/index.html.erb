@@ -1,34 +1,24 @@
 
 <div class="container">
-   <div class="search-form">
-        <div class="card">
-            <div class="row">
-                <div class="col-lg-9">
-                <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder="Etablissement, Ecole, Adresse, Catégorie">
-                </div>
-                </div>
-                <div class="col-sm-3">
-                <div class="form-group">
-                    <button type="submit" class="btn btn-lg btn-primary btn-block">Chercher</button>
-                </div>
-                </div>
-            </div>
+ <div class="search-form">
+  <div class="card">
+    <!-- RECHERCHE -->
+      <%= search_form_for @q, html: {class: "row"} do |f| %>
+      <div class="col-lg-9">
+        <div class="form-group">
+          <%= f.search_field :nom_cont, class: "form-control form-control-lg", placeholder: "Etablissement, Ecole, Adresse, Catégorie" %>
         </div>
-   </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <button type="submit" class="btn btn-lg btn-primary btn-block">Chercher</button>
+        </div>
+      </div>
+      <% end %>
+    <!-- RECHERCHE END -->
+  </div>
 </div>
-
-<% if user_signed_in? %>
-<div>
-    <% if current_user.role=="responsable" %>
-        <% if session[:etab_id] != nil %>    
-            <a href="<%= etablissement_path(session[:etab_id]) %>">Votre établissement</a>
-        <% else %>
-            <a href="<%= new_etablissement_path %>">Créer votre établissement</a>
-        <% end %>
-    <% end %>
 </div>
-<% end %>
 
 <div class="container">
    <div class="row justify-content-md-center">
