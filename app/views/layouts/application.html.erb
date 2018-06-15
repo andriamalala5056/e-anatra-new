@@ -74,44 +74,11 @@
 						Blog
 					</a>
 				</li>
-				<% if user_signed_in? %>
-					<% if current_user.role=="responsable" %>
-						<% if session[:etab_id] != nil %>
-							<li class="nav-item">
-								<a class="nav-link" href="<%= etablissement_path(session[:etab_id]) %>" role="button" aria-haspopup="true" aria-expanded="false">
-									Votre établissement
-								</a>
-							</li>
-						<% else %>
-							<li class="nav-item">
-								<a class="nav-link" href="<%= new_etablissement_path %>" role="button" aria-haspopup="true" aria-expanded="false">
-									Créer votre établissement 
-								</a>
-							</li>
-        				<% end %>
-    				<% end %>
-				<% end %>
 				
-				<% if user_signed_in? %>
-					<% if current_user.role=="responsable" %>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="<%= filieres_path %>" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Filières
-							</a>
-							<div class="dropdown-menu">
-								<% if session[:etab_id] != nil %>
-									<a href="<%= new_filiere_path %>" class="dropdown-item">Créer filière</a>
-									<a href="<%= filiere_path(session[:etab_id]) %>" class="dropdown-item">Vos filières</a>
-								<% end %>
-							</div>
-						</li>
-    				<% end %>
-				<% end %>
-
 				
 				<li class="nav-item dropdown megamenu">
 					<a class="nav-link dropdown-toggle" href="signin.html#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Pages
+						Dashbord
 					</a>
 					<div class="dropdown-menu">
 						<div class="container">
@@ -120,64 +87,45 @@
 									<div class="row">
 										<div class="col-md-6 col-lg-3">
 											<ul class="list-unstyled">
-												<li class="title">Homepage</li>
-												<li><a href="index.html">Homepage 1</a></li>
-												<li><a href="index2.html">Homepage 2</a></li>
-												<li><a href="index3.html">Homepage 3</a></li>
-												<li><a href="index4.html">Homepage 4</a></li>
-												<li><a href="index5.html">Homepage 5</a></li>
-												<li><a href="index6.html">Homepage 6</a></li>
-												<li><a href="index7.html">Homepage 7</a></li>
-												<li class="title">Login Pages</li>
-												<li><a href="signin.html">Signin</a></li>
-												<li><a href="register.html">Register</a></li>
-												<li><a href="forgot-password.html">Forgot Password</a></li>
+												<li class="title">Filière</li>
+												<% if session[:etab_id] != nil %>
+													<li>
+														<a href="<%= new_filiere_path %>">Ajouter filière</a>
+													</li>
+													<li>
+														<a href="<%= filiere_path(session[:etab_id]) %>">Vos filières</a>
+													</li>
+
+												<% end %>
+												<li><a href="<%= filieres_path %>">Tout les filières existes</a></li>
 											</ul>
 										</div>
 										<div class="col-md-6 col-lg-3">
 											<ul class="list-unstyled">
-												<li class="title">Property Listing</li>
-												<li><a href="property_listing.html">List View</a></li>
-												<li><a href="property_grid.html">Grid View</a></li>
-												<li><a href="property_listing_map.html">Map View</a></li>
-												<li class="title">Single Property</li>
-												<li><a href="property_single.html">Single View 1</a></li>
-												<li><a href="property_single2.html">Single View 2</a></li>
-												<li><a href="property_single3.html">Single View 3</a></li>
+												<li class="title">Etablissement</li>
+												<% if session[:etab_id] != nil %>
+													<li>
+														<a href="<%= etablissement_path(session[:etab_id]) %>">Mon établissement</a>
+													</li>
+													
+												<% end %>
+												<li><a href="<%= etablissements_path %>">Tous les établissements</a></li>
 											</ul>
 										</div>
 										<div class="col-md-6 col-lg-3">
 											<ul class="list-unstyled">
-												<li class="title">Other Pages</li>
-												<li><a href="plans.html">Plans</a></li>
-												<li><a href="information_page.html">Information Page</a></li>
-												<li><a href="coming_soon.html">Coming Soon</a></li>
-												<li><a href="404_error.html">Error Page</a></li>
-												<li><a href="success.html">Success Page</a></li>
-												<li><a href="contact.html">Contact Page</a></li>
-												<li><a href="compare.html">Compare Properties</a></li>
-												<li class="title">Agent Pages</li>
-												<li><a href="agent_list.html">Agent List</a></li>
-												<li><a href="agent.html">Agent Profile</a></li>
+												<li class="title">Inscription</li>
+												<% if session[:etab_id] != nil %>
+													<li>
+														<a href="<%= inscription_path(session[:etab_id]) %>">Les élèves inscris</a>
+													</li>
+												<% end %>
+
+												<li><a href="<%= new_inscription_path %>">Inscription</a></li>
+											
 											</ul>
 										</div>
-										<div class="col-md-6 col-lg-3">
-											<ul class="list-unstyled">
-												<li class="title">Account Pages</li>
-												<li><a href="my_listing_add.html">Add Listing</a></li>
-												<li><a href="my_bookmarked_listings.html">Bookmarked Listing</a></li>
-												<li><a href="my_listings.html">My Listings</a></li>
-												<li><a href="my_profile.html">My Profile</a></li>
-												<li><a href="my_password.html">Change Password</a></li>
-												<li><a href="my_notifications.html">Notifications</a></li>
-												<li><a href="my_membership.html">Membership</a></li>
-												<li><a href="my_payments.html">Payments</a></li>
-												<li><a href="my_account.html">Account</a></li>
-												<li class="title">Blog Pages</li>
-												<li><a href="blog.html">Blog Archive</a></li>
-												<li><a href="blog_single.html">Blog Single</a></li>
-											</ul>
-										</div>
+									
 									</div>
 								</div>
 							</div>
@@ -250,75 +198,73 @@
 
 <%= yield %>
 <!-- FOOTER START -->
-<button class="btn btn-primary btn-circle" id="to-top"><i class="fa fa-angle-up"></i></button>
-<footer id="footer" class="bg-blue footer-light">
-       <div class="container container-1000">
-            <div class="row">
-                   <div class="col-lg-3">
-                        <p><span class="icon-uilove icon-uilove-realestate"></span></p>
-                        <address class="mb-3">
-                               <strong>Twitter, Inc.</strong><br>
-                               101 Antananarivo, Pullman Ivandry<br>
-                               Madagascar<br>
-                               <abbr title="Phone">P:</abbr> (261) 34-927-51
-                        </address>
-                        <div class="footer-social mb-4"><a href="#" class="ml-2 mr-2"><span class="fa fa-twitter"></span></a> <a href="https://www.facebook.com/E-anatra-178591866120655" target="_blank" class="ml-2 mr-2"><span class="fa fa-facebook"></span></a> <a href="#" class="ml-2 mr-2"><span class="fa fa-instagram"></span></a></div>
-                   </div>
-                   <div class="col-lg-2 col-sm-4">
-                        <div class="footer-links">
-                               <ul class="list-unstyled">
-                                    <li class="list-title"><a href="index.html#">About</a></li>
-                                    <li><a href="index.html#">Company</a></li>
-                                    <li><a href="index.html#">Community</a></li>
-                                </ul>
-                        </div>
-                   </div>
-                   <div class="col-lg-2 col-sm-4">
-                        <div class="footer-links">
-                               <ul class="list-unstyled">
-                                    <li class="list-title"><a href="#">Links</a></li>
-                                    <li><a href="#">For Rent</a></li>
-                                    <li><a href="#">For Sale</a></li>
-                                    <li><a href="#">Commercial</a></li>
-                                    <li><a href="#">Agents</a></li>
-                                    <li><a href="#">Property Guides</a></li>
-                                    <li><a href="#">Jobs</a></li>
-                               </ul>
-                        </div>
-                   </div>
-                   <div class="col-lg-2 col-sm-4">
-                        <div class="footer-links">
-                               <ul class="list-unstyled">
-                                    <li class="list-title"><a href="#">Help</a></li>
-                                    <li><a href="#">Payments</a></li>
-                                    <li><a href="#">Shipping</a></li>
-                                    <li><a href="#">Cancellation</a></li>
-                                    <li><a href="#">FAQ</a></li>
-                                    <li><a href="#">Report</a></li>
-                               </ul>
-                        </div>
-                   </div>
-                   <div class="col-lg-3">
-                        <div class="text-lg-right ml-lg-2">
-                               <form action="" methode = "POST">
-                                    <div class="list-title">Subscribe</div>
-                                    <div class="input-group input-group-lg">
-                                           <input type="text" name="email" class="form-control form-control-lg subscribe-input" placeholder="Email">
-                                           <div class="input-group-append ml-0">
-                                                <button class="btn subscribe-button" type="submit"><i class="fa fa-envelope"></i></button>
-                                           </div>
-                                    </div>
-                               </form>
-                               <div class="footer-payments"><span class="fa fa-cc-visa"></span> <span class="fa fa-cc-mastercard"></span> <span class="fa fa-cc-amex"></span> </div>
-                        </div>
-                   </div>
-            </div>
-            <div class="footer-credits d-lg-flex justify-content-lg-between align-items-center">
-                   <div>Made with <strong>ruby on rails</strong></div>
-                   <div>© 2018 e-anatra. All Rights Reserved</div>
-            </div>
-       </div>
-</footer>
+				 <button class="btn btn-primary btn-circle" id="to-top"><i class="fa fa-angle-up"></i></button>
+				 <footer id="footer" class="bg-blue footer-light">
+						<div class="container container-1000">
+							 <div class="row">
+									<div class="col-lg-3">
+										 <p>
+										 	<img class="footer_logo" src="/e-anatra.png">
+										 </p>
+										 <address class="mb-3">
+												<strong>e-anatra</strong><br>
+												Passion for humanity (P4H)<br>
+												Ivandry, Antananarivo<br>
+												<abbr title="Phone">P:</abbr> (+261) 34 15 162 50
+										 </address>
+										 <div class="footer-social mb-4"><a href="#" class="ml-2 mr-2"><span class="fa fa-twitter"></span></a> <a href="https://www.facebook.com/E-anatra-178591866120655" target="_blank" class="ml-2 mr-2"><span class="fa fa-facebook"></span></a> <a href="#" class="ml-2 mr-2"><span class="fa fa-instagram"></span></a></div>
+									</div>
+									<div class="col-lg-2 col-sm-4">
+										 <div class="footer-links">
+												<ul class="list-unstyled">
+													 <li class="list-title"><a href="#">Liens</a></li>
+													 <li><a href="/">Accueil</a></li>
+													 <li><a href="/articles">Blog</a></li>
+													 <li><a href="/etablissements">Etablissements</a></li>
+												</ul>
+										 </div>
+									</div>
+									<div class="col-lg-2 col-sm-4">
+										 <div class="footer-links">
+												<ul class="list-unstyled">
+													 <li class="list-title"><a href="/">Administration</a></li>
+													 <li><a href="/etablissements/new">Crée établissement</a></li>
+													 <li><a href="/articles/new">Créer un article</a></li>
+												</ul>
+										 </div>
+									</div>
+									<div class="col-lg-2 col-sm-4">
+										 <div class="footer-links">
+												<ul class="list-unstyled">
+													 <li class="list-title"><a href="index.html#">Compte</a></li>
+													 <li><a href="/users/sign_in">Se connecter</a></li>
+													 <li><a href="/users/edit">Editer compte</li>
+													 <li><a href="/users/sign_up">Créer un compte</a></li>
+													 <li><a href="/users/password/new">Mot de passe oublié</a></li>
+												</ul>
+										 </div>
+									</div>
+									<div class="col-lg-3">
+										 <div class="text-lg-right ml-lg-2">
+												<form>
+													 <div class="list-title">Recevoir nos mailing</div>
+													 <div class="input-group input-group-lg">
+															<input type="text" name="email" class="form-control form-control-lg subscribe-input" placeholder="Email">
+															<div class="input-group-append ml-0">
+																 <button class="btn subscribe-button" type="button"><i class="fa fa-envelope"></i></button>
+															</div>
+													 </div>
+												</form>
+												<div class="footer-payments"><span class="fa fa-cc-visa"></span> <span class="fa fa-cc-mastercard"></span> <span class="fa fa-cc-amex"></span> </div>
+										 </div>
+									</div>
+							 </div>
+							 <div class="footer-credits d-lg-flex justify-content-lg-between align-items-center">
+									<div>Made with <strong>ruby on rails</strong></div>
+									<div>© 2018 e-anatra. All Rights Reserved</div>
+							 </div>
+						</div>
+				 </footer>
 <!-- FOOTER END -->
 
 	</body>

@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   def index
-    @articles = Article.all
+    @articles = Article.page(params[:page]).per(4)
   end
 
   def new
@@ -63,6 +63,7 @@ class ArticlesController < ApplicationController
       redirect_to user_session_path
     end
 =end
+
     @article = Article.where(etablissement_id: params[:id])
       if session[:etab_id]
           @article = Article.where(etablissement_id: session[:etab_id])

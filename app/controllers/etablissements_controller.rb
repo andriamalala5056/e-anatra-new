@@ -3,7 +3,7 @@ class EtablissementsController < ApplicationController
 
   def index
     @q = Etablissement.ransack(params[:q])
-    @etablissements = @q.result.page(params[:page]).per(8)
+    @etablissements = @q.result.page(params[:page]).per(10)
   end
 
   def show
@@ -33,14 +33,6 @@ class EtablissementsController < ApplicationController
 
     @p = Province.find(params[:etablissement][:province_id])
    
-    #@etablissement = Etablissement.new(etablissement_params)
-    #@etablissement.image_etablissement = params[:etablissement][:image_etablissement]
-    #if @etablissement.save
-     # redirect_to etablissements_path
-    #else
-    #  redirect_to etablissements_path
-    #end
-    # en tant que responsable = CREER SON ETABLISSEMENT
     test = false
     if user_signed_in?
       # si la personne est RESPONSABLE
@@ -52,20 +44,7 @@ class EtablissementsController < ApplicationController
 
           @etablissement.responsable_id = current_user.id  # qui est le responsable de cet établissement
           @etablissement.image_etablissement = params[:etablissement][:image_etablissement]
-          puts "===================="
-            puts @etablissement.nom
-            puts @etablissement.mail
-            puts @etablissement.telephone
-            puts @etablissement.adress
-            puts @etablissement.description
-            puts @etablissement.category
-            puts @etablissement.longitude
-            puts @etablissement.latitude
-            puts @etablissement.responsable_id
-            puts @etablissement.province_id
-            puts @etablissement.image_etablissement == true
-            puts @etablissement.dossier_a_fournir == true
-          puts "===================="
+          
           @etablissement.province = @p
           if @etablissement.save
             session[:etab_id] =  @etablissement.id
@@ -99,8 +78,27 @@ class EtablissementsController < ApplicationController
     
   end
 
-  def update
+  def edit
+    redirect_to etablissements_path
+=begin
+    if user_signed_in?
+      if session[:responsable] 
+        if session[:etab_id]
+          @@etablissement = Etablissement.find(session[:etab_id])
+        else
+          redirect_to etablissements_path
+        end
+      else
+        redirect_to etablissements_path
+      end
+    else
+      redirect_to user_session_path
+    end
+=end
+  end
 
+  def update
+    
   end
 
   def delete
@@ -148,3 +146,33 @@ class EtablissementsController < ApplicationController
   end
 
 end
+
+
+=begin
+  
+
+                                 <!--a href="<%= etablissement_path(@etablissements.last.id) %>">
+                          <div class="col-lg-6">
+                            <div class="item">
+                              <div class="item-image">
+                                  <%= image_tag @etablissements.last.image_etablissement.url(#:thumb), class: "img-fluid" %>
+                                  <% #if @etablissements.last.category? %>
+                                  <div class="item-badges">
+                                    <div class="item-badge-left"><%= @etablissements.last.category %></div>
+                                  </div>
+                                  <% #end %>
+                                <a href="<%= etablissement_path(@etablissements.last.id) %>"></a>
+                              </div>
+                            <div class="item-info">
+                              <h3 class="item-title"><%= @etablissements.last.nom %></h3>
+                              <div class="item-location"><i class="fa fa-map-marker"></i>&nbsp;
+<%= @etablissements.last.adress %></div>
+                                 <a href="<%= likes_path(@etablissements.last)%>">
+                              <div class="item-details-i"><i class="fa fa-thumbs-up"></i>&nbsp;
+<%= @etablissements.last.likers_count %> </div>
+                                 </a>
+                            </div>
+                            </div>
+                          </div>
+                        </a -->
+=end

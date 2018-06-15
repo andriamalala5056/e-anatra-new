@@ -24,8 +24,9 @@ class VaguesController < ApplicationController
   # POST /vagues.json
   def create
     v = Vague.new()
-    v.rentree = "1-32018"# params([:vague][:rentree])
+    v.rentree = params[:vague][:rentree]
     v.etablissement = Etablissement.find(params[:vague][:etablissement_id])
+    v.save
     redirect_to vagues_path
   end
 

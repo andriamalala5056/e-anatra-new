@@ -44,83 +44,36 @@
                      <div class="sidebar_inner">
                         <div id="filters">
                            <div class="card">
-                              <div class="card-header">
-                                 <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" href="property_grid.html#p_budget" aria-expanded="true" aria-controls="p_type"> Budget <i class="fa fa-caret-down float-right"></i> </a> </h4>
+
+                              <% if user_signed_in? %>
+                              <div>
+                                  <% if current_user.role=="responsable" %>
+                                      <% if session[:etab_id] != nil %>
+                                        <div class="card-header">
+                                           <h4 class="panel-title"> <a role="button" href="<%= etablissement_path(session[:etab_id]) %>" aria-expanded="true" aria-controls="p_type"> Mon établissement </a> </h4>
+                                        </div> 
+                                          
+                                      <% else %>
+                                        <div class="card-header">
+                                           <h4 class="panel-title"> <a role="button" href="<%= new_etablissement_path %>" aria-expanded="true" aria-controls="p_type"> Créer votre établissement </a> </h4>
+                                        </div> 
+                                      <% end %>
+                                  <% end %>
                               </div>
-                              <div id="p_budget" class="panel-collapse collapse" role="tabpanel">
-                                 <div class="card-body">
-                                    <div class="row">
-                                       <div class="col-md-6">
-                                          <div class="form-group">
-                                             <input type="text" class="form-control input-sm" placeholder="Min">
-                                          </div>
-                                       </div>
-                                       <div class="col-md-6">
-                                          <div class="form-group">
-                                             <input type="text" class="form-control input-sm" placeholder="Max">
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
+                              <% end %>
+                              
                            </div>
                            <div class="card">
                               <div class="card-header">
-                                 <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" href="property_grid.html#p_type" aria-expanded="true" aria-controls="p_type"> Property Type <i class="fa fa-caret-down float-right"></i> </a> </h4>
+                                 <h4 class="panel-title"><%= sort_link(@q, :nom, "Trier par nom") %></i></h4>
                               </div>
-                              <div id="p_type" class="panel-collapse collapse show" role="tabpanel">
-                                 <div class="card-body">
-                                    <div class="checkbox ">
-                                       <input type="checkbox" value="1" id="house">
-                                       <label for="house">House</label>
-                                    </div>
-                                    <div class="checkbox ">
-                                       <input type="checkbox" value="1" id="flat">
-                                       <label for="flat">Flat</label>
-                                    </div>
-                                    <div class="checkbox ">
-                                       <input type="checkbox" value="1" id="appartment">
-                                       <label for="appartment">Appartment</label>
-                                    </div>
-                                    <div class="checkbox ">
-                                       <input type="checkbox" value="1" id="farms">
-                                       <label for="farms">Farms/Lands</label>
-                                    </div>
-                                    <div class="checkbox ">
-                                       <input type="checkbox" value="1" id="room">
-                                       <label for="room">Room</label>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="card">
                               <div class="card-header">
-                                 <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" href="property_grid.html#p_features" aria-expanded="true" aria-controls="p_features"> Features <i class="fa fa-caret-down float-right"></i> </a> </h4>
+                                 <h4 class="panel-title"><%= sort_link(@q, :likers_count, "Trier par likes") %></i></h4>
                               </div>
-                              <div id="p_features" class="panel-collapse collapse show" role="tabpanel">
-                                 <div class="card-body">
-                                    <div class="checkbox">
-                                       <input type="checkbox" value="" id="garden">
-                                       <label for="garden"> Garden</label>
-                                    </div>
-                                    <div class="checkbox">
-                                       <input type="checkbox" value="" id="parking">
-                                       <label for="parking"> Parking</label>
-                                    </div>
-                                    <div class="checkbox">
-                                       <input type="checkbox" value="" id="fireplace">
-                                       <label for="fireplace"> Fireplace</label>
-                                    </div>
-                                    <div class="checkbox">
-                                       <input type="checkbox" value="" id="restaurant">
-                                       <label for="restaurant"> Restaurant</label>
-                                    </div>
-                                    <div class="checkbox">
-                                       <input type="checkbox" value="" id="school">
-                                       <label for="school"> School</label>
-                                    </div>
-                                 </div>
+                              <div class="card-header">
+                                 <h4 class="panel-title"><%= sort_link(@q, :category, "Trier par catégories") %></i></h4>
                               </div>
+                              
                            </div>
                         </div>
                      </div>
@@ -131,6 +84,9 @@
                   <div class="item-listing grid">
                      <div class="row">
                         <!-- INDEX FOR ETAB START -->
+                        
+
+
                         <% @etablissements.each do |etab| %>
                         <a href="<%= etablissement_path(etab.id) %>">
                         	<div class="col-lg-6">
@@ -147,10 +103,11 @@
                     				<div class="item-info">
                     					<h3 class="item-title"><%= etab.nom %></h3>
                     					<div class="item-location"><i class="fa fa-map-marker"></i>&nbsp;
-<%= etab.adress %></div>
+                                 <%= etab.adress %></div>
                                  <a href="<%= likes_path(etab)%>">
-                    					<div class="item-details-i"><i class="fa fa-thumbs-up"></i>&nbsp;
-<%= etab.likers_count %> </div>
+                          					<div class="item-details-i"><i class="fa fa-thumbs-up"></i>&nbsp;
+                                       <%= etab.likers_count %>
+                                    </div>
                                  </a>
                     				</div>
                         		</div>
