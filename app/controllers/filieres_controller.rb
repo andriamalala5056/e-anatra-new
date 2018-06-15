@@ -8,7 +8,21 @@ class FilieresController < ApplicationController
   end
 
   def create
+    
     if user_signed_in?
+      if current_user.role == "admin"
+        @f = Filiere.find_by(nom: params[:filiere][:nom])
+        if @f.valid?
+          @f.save
+         
+          flash[:error] = "Enregistrement filière réussi!"
+          redirect_to filieres_path
+        #enregistrement filiere invalide
+        else
+          flash[:error] = "Erreur d'enregistrement filiere!"
+          redirect_to new_filiere_path
+        end
+      end
       #if responsable
       if session[:responsable] != nil
         #if son etablissement exist
@@ -58,7 +72,15 @@ class FilieresController < ApplicationController
   end
 
   def edit
-    @filiere = Filiere.find(params[:id])
+    if user_signed_in?
+      if current_user.role == "admin"
+          @filiere = Filiere.find(params[:id])
+      else
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   def update
