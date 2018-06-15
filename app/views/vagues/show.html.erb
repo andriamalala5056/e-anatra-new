@@ -1,14 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Rentree:</strong>
-  <%= @vague.rentree %>
-</p>
+  <h1>Vagues</h1>
 
-<p>
-  <strong>Status:</strong>
-  <%= @vague.status %>
-</p>
-
-<%= link_to 'Edit', edit_vague_path(@vague) %> |
-<%= link_to 'Back', vagues_path %>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Rentree</th>
+        <th scope="col">Status</th>
+        <th scope="col" colspan="2" style="text-align:center">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @vague.rentree %></td>
+        <td><%= @vague.status %></td>
+        <td><%= link_to 'Edit', edit_vague_path(@vague.id) %></td>
+        <td><%= link_to 'Back', vagues_path %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
