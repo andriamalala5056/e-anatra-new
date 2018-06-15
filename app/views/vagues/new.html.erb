@@ -1,15 +1,15 @@
 <div class="container">
     <%= form_for @vague  do |f| %>
 
-        <fieldset class="form-group">
+        <div class="form-group">
             <label for="date">Rentree</label>
             <%= f.date_field :rentree %>
-        </fieldset>
+        </div>
 
-        <fieldset class="form-group">
+        <div class="form-group">
             <label for="etabmissement">Etablissement</label>
-            <%= f.collection_select :etablissement_id, Etablissement.order(:nom), :id, :nom, include_blank: true %>
-        </fieldset>
+            <%= f.collection_select :etablissement_id, Etablissement.order(:nom), :id, :nom, include_blank: true, class: "form-control" %>
+        </div>
 
         <%= f.submit "Ajouter", class: "btn btn-primary" %>
     <% end %>

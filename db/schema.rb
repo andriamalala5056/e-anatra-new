@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 2018_06_15_093237) do
     t.string "image_etablissement_content_type"
     t.integer "image_etablissement_file_size"
     t.datetime "image_etablissement_updated_at"
-    t.integer "responsable_id"
     t.integer "likers_count", default: 0
+    t.integer "responsable_id"
     t.bigint "province_id"
     t.index ["province_id"], name: "index_etablissements_on_province_id"
   end
@@ -97,11 +97,11 @@ ActiveRecord::Schema.define(version: 2018_06_15_093237) do
   end
 
   create_table "inscriptions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "etablissement_id"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.bigint "etablissement_id"
     t.bigint "vague_id"
     t.bigint "filiere_id"
     t.bigint "province_id"
@@ -153,13 +153,6 @@ ActiveRecord::Schema.define(version: 2018_06_15_093237) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sessions", force: :cascade do |t|
-    t.date "rentree"
-    t.boolean "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -171,10 +164,6 @@ ActiveRecord::Schema.define(version: 2018_06_15_093237) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "nom"
@@ -186,7 +175,6 @@ ActiveRecord::Schema.define(version: 2018_06_15_093237) do
     t.string "role"
     t.string "image"
     t.integer "likees_count", default: 0
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
