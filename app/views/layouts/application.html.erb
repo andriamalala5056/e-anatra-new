@@ -74,40 +74,7 @@
 						Blog
 					</a>
 				</li>
-				<% if user_signed_in? %>
-					<% if current_user.role=="responsable" %>
-						<% if session[:etab_id] != nil %>
-							<li class="nav-item">
-								<a class="nav-link" href="<%= etablissement_path(session[:etab_id]) %>" role="button" aria-haspopup="true" aria-expanded="false">
-									Votre établissement
-								</a>
-							</li>
-						<% else %>
-							<li class="nav-item">
-								<a class="nav-link" href="<%= new_etablissement_path %>" role="button" aria-haspopup="true" aria-expanded="false">
-									Créer votre établissement 
-								</a>
-							</li>
-        				<% end %>
-    				<% end %>
-				<% end %>
 				
-				<% if user_signed_in? %>
-					<% if current_user.role=="responsable" %>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="<%= filieres_path %>" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Filières
-							</a>
-							<div class="dropdown-menu">
-								<% if session[:etab_id] != nil %>
-									<a href="<%= new_filiere_path %>" class="dropdown-item">Créer filière</a>
-									<a href="<%= filiere_path(session[:etab_id]) %>" class="dropdown-item">Vos filières</a>
-								<% end %>
-							</div>
-						</li>
-    				<% end %>
-				<% end %>
-
 				
 				<li class="nav-item dropdown megamenu">
 					<a class="nav-link dropdown-toggle" href="signin.html#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
