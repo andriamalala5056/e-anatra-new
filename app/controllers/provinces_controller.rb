@@ -14,11 +14,26 @@ class ProvincesController < ApplicationController
 
   # GET /provinces/new
   def new
-    @province = Province.new
+    if user_signed_in?
+      if current_user.role == "admin"
+        @province = Province.new
+      else
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /provinces/1/edit
   def edit
+    if user_signed_in?
+      if current_user.role != "admin"
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   # POST /provinces
@@ -40,24 +55,40 @@ class ProvincesController < ApplicationController
   # PATCH/PUT /provinces/1
   # PATCH/PUT /provinces/1.json
   def update
-    respond_to do |format|
-      if @province.update(province_params)
-        format.html { redirect_to @province, notice: 'Province was successfully updated.' }
-        format.json { render :show, status: :ok, location: @province }
+    if user_signed_in?
+      if current_user.role == "admin"
+        respond_to do |format|
+          if @province.update(province_params)
+            format.html { redirect_to @province, notice: 'Province was successfully updated.' }
+            format.json { render :show, status: :ok, location: @province }
+          else
+            format.html { render :edit }
+            format.json { render json: @province.errors, status: :unprocessable_entity }
+          end
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @province.errors, status: :unprocessable_entity }
+        redirect_to root_path
       end
+    else
+      redirect_to root_path
     end
   end
 
   # DELETE /provinces/1
   # DELETE /provinces/1.json
   def destroy
-    @province.destroy
-    respond_to do |format|
-      format.html { redirect_to provinces_url, notice: 'Province was successfully destroyed.' }
-      format.json { head :no_content }
+    if user_signed_in?
+      if current_user.role == "admin"
+        @province.destroy
+        respond_to do |format|
+          format.html { redirect_to provinces_url, notice: 'Province was successfully destroyed.' }
+          format.json { head :no_content }
+        end
+      else
+      redirect_to root_path
+      end
+    else
+      redirect_to root_path  
     end
   end
 
