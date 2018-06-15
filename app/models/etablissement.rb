@@ -2,6 +2,9 @@ class Etablissement < ApplicationRecord
     has_many :associate_user_etabs
     has_many :user, through: :associate_user_etabs
 
+    has_many :inscriptions
+    has_many :user, through: :inscriptions
+
     has_attached_file :dossier_a_fournir    
     validates_attachment :dossier_a_fournir, content_type: { content_type: "application/pdf" }
     
@@ -18,6 +21,8 @@ class Etablissement < ApplicationRecord
     has_many :niveau, through: :associate_niveau_etabs
 
     has_many :articles
+
+    has_many :vagues
 
     # etablissemnt followable
     acts_as_followable

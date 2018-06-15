@@ -20,7 +20,6 @@
 </div>
 </div>
 
-
 <div class="container">
    <div class="row justify-content-md-center">
       <div class="col col-lg-12 col-xl-10">
@@ -104,10 +103,11 @@
                     				<div class="item-info">
                     					<h3 class="item-title"><%= etab.nom %></h3>
                     					<div class="item-location"><i class="fa fa-map-marker"></i>&nbsp;
-<%= etab.adress %></div>
+                                 <%= etab.adress %></div>
                                  <a href="<%= likes_path(etab)%>">
-                    					<div class="item-details-i"><i class="fa fa-thumbs-up"></i>&nbsp;
-<%= etab.likers_count %> </div>
+                          					<div class="item-details-i"><i class="fa fa-thumbs-up"></i>&nbsp;
+                                       <%= etab.likers_count %>
+                                    </div>
                                  </a>
                     				</div>
                         		</div>

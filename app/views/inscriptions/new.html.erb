@@ -1,0 +1,35 @@
+<div class="container">
+<h1>Inscriptions</h1>
+<%= form_for @inscription  do |f| %>
+
+
+    <fieldset class="form-group">
+        <label for="province">Province</label>
+        <%= f.collection_select :province_id, Province.order(:nom), :id, :nom, include_blank: true %>
+    </fieldset>
+ 
+    <fieldset class="form-group">
+        <label for="etablissement">Etablissement</label>
+        <%= f.collection_select :etablissement_id, Etablissement.order(:nom), :id, :nom, include_blank: true %>
+    </fieldset>
+
+    <fieldset class="form-group">
+        <label for="filiere">Filiere</label>
+        <%= f.collection_select :filiere_id, Filiere.order(:nom), :id, :nom, include_blank: true %>
+    </fieldset>
+
+    <fieldset class="form-group">
+        <label for="vague">Vague</label>
+        <%= f.collection_select :vague_id, Vague.order(:rentree), :id, :rentree, include_blank: true %>
+    </fieldset>
+
+
+    <fieldset class="form-group">
+        <label for="niveau">Level</label>
+        <%= f.collection_select :level_id, Level.order(:niveau), :id, :niveau, include_blank: true %>
+    </fieldset>
+
+
+    <%= f.submit "S'nscrire", class: "btn btn-primary" %>
+<% end %>
+</div>

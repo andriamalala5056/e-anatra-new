@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :vagues
+ 
   resources :provinces
   get '/direct_message', to: 'bot_twitter#direct_message'
   get '/get_followers', to: 'bot_twitter#get_followers'
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
   resources :niveaus
   resources :niveausups
   resources :associate_filiere_etabs
+  resources :inscriptions
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

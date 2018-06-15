@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_14_160306) do
+ActiveRecord::Schema.define(version: 2018_06_15_093237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,24 @@ ActiveRecord::Schema.define(version: 2018_06_14_160306) do
     t.index ["follower_id", "follower_type"], name: "fk_follows"
   end
 
+  create_table "inscriptions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "etablissement_id"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "vague_id"
+    t.bigint "filiere_id"
+    t.bigint "province_id"
+    t.bigint "level_id"
+    t.index ["etablissement_id"], name: "index_inscriptions_on_etablissement_id"
+    t.index ["filiere_id"], name: "index_inscriptions_on_filiere_id"
+    t.index ["level_id"], name: "index_inscriptions_on_level_id"
+    t.index ["province_id"], name: "index_inscriptions_on_province_id"
+    t.index ["user_id"], name: "index_inscriptions_on_user_id"
+    t.index ["vague_id"], name: "index_inscriptions_on_vague_id"
+  end
+
   create_table "levels", force: :cascade do |t|
     t.string "niveau"
     t.datetime "created_at", null: false
@@ -161,6 +179,15 @@ ActiveRecord::Schema.define(version: 2018_06_14_160306) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vagues", force: :cascade do |t|
+    t.date "rentree"
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "etablissement_id"
+    t.index ["etablissement_id"], name: "index_vagues_on_etablissement_id"
+  end
+
   add_foreign_key "articles", "etablissements"
   add_foreign_key "associate_filiere_etabs", "etablissements"
   add_foreign_key "associate_filiere_etabs", "filieres"
@@ -170,4 +197,11 @@ ActiveRecord::Schema.define(version: 2018_06_14_160306) do
   add_foreign_key "associate_user_etabs", "etablissements"
   add_foreign_key "associate_user_etabs", "users"
   add_foreign_key "etablissements", "provinces"
+  add_foreign_key "inscriptions", "etablissements"
+  add_foreign_key "inscriptions", "filieres"
+  add_foreign_key "inscriptions", "levels"
+  add_foreign_key "inscriptions", "provinces"
+  add_foreign_key "inscriptions", "users"
+  add_foreign_key "inscriptions", "vagues"
+  add_foreign_key "vagues", "etablissements"
 end

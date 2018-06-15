@@ -1,0 +1,23 @@
+<div class="container">
+<h1>Tout les élèves déjà inscrit dans mon établissement</h1>
+<table>
+    <thead>
+        <th>Nom etudiant</th><th>Prenom etudiant</th><th>Province</th><th>Etablissement</th><th>Filiere</th><th>Session</th><th>Niveau</th>
+    </thead>
+    <% @inscriptions.each do |f| %>
+        <tr>
+            <td><%= f.user.nom %></td>
+            <td><%= f.user.prenom %></td>
+            <td><%= f.province.nom %></td>
+            <td><%= f.etablissement.nom %></td>
+            <td><%= f.filiere.nom %></td>
+            <td><%= Date.parse(f.vague.rentree.to_s).strftime('%a %d %b %Y') %> </td>
+            <td><%= f.level.niveau %></td>
+            
+            <!-- td>
+                <a href="<%= inscription_path(f.id) %>" class="btn btn-danger" data-confirm="Êtes vous sur ?" data-method="DELETE">Supprimer</a>
+            </td -->
+        </tr>
+    <% end %>
+</table>
+</div>
