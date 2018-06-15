@@ -147,6 +147,13 @@ ActiveRecord::Schema.define(version: 2018_06_15_093237) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "niveausups", force: :cascade do |t|
+    t.string "niveau"
+    t.integer "nb_place"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "provinces", force: :cascade do |t|
     t.string "nom"
     t.datetime "created_at", null: false

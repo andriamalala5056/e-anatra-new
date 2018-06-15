@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120906785-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-120906785-1');
+		</script>
+
 		<title>EAnatra</title>
 		<%= csrf_meta_tags %>
 		<%= csp_meta_tag %>
@@ -228,7 +238,7 @@
 										 <div class="footer-links">
 												<ul class="list-unstyled">
 													 <li class="list-title"><a href="/">Administration</a></li>
-													 <li><a href="/etablissements/new">Crée établissement</a></li>
+													 <li><a href="/etablissements/new">Créer établissement</a></li>
 													 <li><a href="/articles/new">Créer un article</a></li>
 												</ul>
 										 </div>
@@ -266,6 +276,7 @@
 						</div>
 				 </footer>
 <!-- FOOTER END -->
+
 	</body>
 
 	<!--script id="dsq-count-scr" src="//e-anatra.disqus.com/count.js" async></script-->

@@ -1,5 +1,5 @@
 class VaguesController < ApplicationController
-  
+  before_action :get_id, only: [:show, :update, :edit, :destroy]
   # GET /vagues
   # GET /vagues.json
   def index
@@ -50,6 +50,12 @@ class VaguesController < ApplicationController
   # DELETE /vagues/1.json
   def destroy
     
+  end
+
+  private
+
+  def get_id
+      @vague = Vague.find(params[:id])
   end
 
 end
