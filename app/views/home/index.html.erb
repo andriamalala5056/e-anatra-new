@@ -7,19 +7,21 @@
                    <h2>Trouvez votre prochaine école</h2>
                    <h3>E-anatra est la plateforme qu'il vous faut</h3>
                 </div>
-                <form action="property_listing.html">
+
+                <form action="etablissements/", method="GET">
                    <div class="row justify-content-md-center">
                       <div class="col-md-9 col-lg-8">
                          <div class="input-group input-group-lg">
+                            <input name="authenticity_token" type="hidden" value="J7CBxfHalt49OSHp27hblqK20c9PgwJ108nDHX/8Cts=" />
                             <input type="text" class="form-control" placeholder="Etablissements, lieux ...">
                             <span class="input-group-append">
-                            <!--button class="btn btn-white btn-lg" type="button"><i class="fa fa-map-marker" aria-hidden="true"></i></button-->
-                            <button class="btn btn-primary btn-lg" type="button">Recherche</button>
+                            <button class="btn btn-primary btn-lg" type="submit">Recherche</button>
                             </span>
                          </div>
                       </div>
                    </div>
                 </form>
+
              </div>
           </div>
        </div>
@@ -35,25 +37,25 @@
                       <div class="col-md-4">
                          <div class="content-box">
                             <div class="image"> <img src="img/demo/icons/1.png" width="100" alt=""> </div>
-                            <h4>Vie Scolaire</h4>
-                            <div class="caption">L'éducation est une valeure sûr, trouvez l'école qui vous correspond en un clic !</div>
-                            <div class="button"><a href="index.html#">TROUVEZ VOTRE ETABLISSEMENT</a></div>
+                            <h4>Lifestyle</h4>
+                            <div class="caption">Mise  en ligne de votre établissement .</div>
+                            <a  class="button" href="<%= new_etablissement_path  %>">COMMENCER MAINTENANT</a>
                          </div>
                       </div>
                       <div class="col-md-4">
                          <div class="content-box">
                             <div class="image"> <img src="img/demo/icons/2.png" width="100" alt=""> </div>
-                            <h4>Madagascar</h4>
-                            <div class="caption">Un déménagement? Ne vous inquiétez pas, vous trouverez l'établissement qui vous correspond partout dans la grande île.</div>
-                            <div class="button"><a href="index.html#">VOTRE PROVINCE</a></div>
+                            <h4>Gesiton de vos espaces</h4>
+                            <div class="caption">Mise en place plus facile</div>
+                            <a class="button" href="<%= etablissements_path %>">Afficher les etablissements</a>
                          </div>
                       </div>
                       <div class="col-md-4">
                          <div class="content-box">
                             <div class="image"> <img src="img/demo/icons/3.png" width="100" alt=""> </div>
-                            <h4>Administration</h4>
-                            <div class="caption">Les renseignements et paperasses pour vos démarches avec e-anatra. </div>
-                            <div class="button"><a href="index.html#">VALIDEZ L'INSCRIPTION</a></div>
+                            <h4>Votre école</h4>
+                            <div class="caption">Recherche plus repide et facile d'etablissement de son goût.</div>
+                            <a  class="button" href="<%= etablissements_path %>#">EXPLORER MAINTENANT</a>
                          </div>
                       </div>
                    </div>
@@ -65,14 +67,12 @@
 
 
 
-
-
       <div class="feature-box gray centered">
        <div>
           <div class="container">
              <div class="row justify-content-md-center">
                 <div class="col col-lg-12 col-xl-10">
-                   <div class="main-title"><span> Etablissements&Formations</span></div>
+                   <div class="main-title"><span>Quelque un de nos établissements </span></div>
                    <div class="item-listing grid mb50">
                       <div class="row">
 

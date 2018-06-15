@@ -3,6 +3,7 @@
     <%= image_tag(current_user.image.thumb.url, class: "user-profile") %> Hi, <%= current_user.nom %>
     </a>
     <div class="dropdown-menu">
+       <a href="/etablissements/new" class="dropdown-item">Créer une établissement</a>
        <a href="/users/edit" class="dropdown-item">Editer mon compte</a>
        <%= link_to "Déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
     </div>

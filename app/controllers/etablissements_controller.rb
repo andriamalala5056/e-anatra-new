@@ -1,12 +1,13 @@
 class EtablissementsController < ApplicationController
-  before_action :get_id, only: [:show, :update, :destroy]
+  before_action :get_id, only: [:show, :update, :destroy, :likes]
 
   def index
-    @etablissements = Etablissement.page(params[:page]).per(8)
+    @q = Etablissement.ransack(params[:q])
+    @etablissements = @q.result.page(params[:page]).per(8)
   end
 
   def show
-    
+
   end
 
   def new
@@ -29,13 +30,16 @@ class EtablissementsController < ApplicationController
   end
 
   def create
-    @etablissement = Etablissement.new(etablissement_params)
-    @etablissement.image_etablissement = params[:etablissement][:image_etablissement]
-    if @etablissement.save
-      redirect_to etablissements_path
-    else
-      redirect_to etablissements_path
-    end
+
+    @p = Province.find(params[:etablissement][:province_id])
+   
+    #@etablissement = Etablissement.new(etablissement_params)
+    #@etablissement.image_etablissement = params[:etablissement][:image_etablissement]
+    #if @etablissement.save
+     # redirect_to etablissements_path
+    #else
+    #  redirect_to etablissements_path
+    #end
     # en tant que responsable = CREER SON ETABLISSEMENT
     test = false
     if user_signed_in?
@@ -45,7 +49,24 @@ class EtablissementsController < ApplicationController
         if session[:etab_id] == nil
           # la personne peut créer son étab
           @etablissement = Etablissement.new(etablissement_params)
+
           @etablissement.responsable_id = current_user.id  # qui est le responsable de cet établissement
+          @etablissement.image_etablissement = params[:etablissement][:image_etablissement]
+          puts "===================="
+            puts @etablissement.nom
+            puts @etablissement.mail
+            puts @etablissement.telephone
+            puts @etablissement.adress
+            puts @etablissement.description
+            puts @etablissement.category
+            puts @etablissement.longitude
+            puts @etablissement.latitude
+            puts @etablissement.responsable_id
+            puts @etablissement.province_id
+            puts @etablissement.image_etablissement == true
+            puts @etablissement.dossier_a_fournir == true
+          puts "===================="
+          @etablissement.province = @p
           if @etablissement.save
             session[:etab_id] =  @etablissement.id
             # créer association 
@@ -91,7 +112,6 @@ class EtablissementsController < ApplicationController
   def likes
     if user_signed_in?
 
-        @etablissement = Etablissement.find(params[:id])
         if @etablissement.liked_by?(current_user)
           current_user.unlike!(@etablissement)
           @etablissement.likers_count -= 1
@@ -116,10 +136,15 @@ class EtablissementsController < ApplicationController
     params.require(:etablissement).permit(:nom, :mail, :telephone, :adress, :description, :category, :longitude, :latitude, :dossier_a_fournir, :image_etablissement)
   end
 
+  # Récupère au préalable l'id pour les actions show, update, destroy, likes
+  # Gère aussi les erreurs au cas où un utilisateur rendre une id non existant
   def get_id
-    @etablissement = Etablissement.find(params[:id])
+    begin
+      @etablissement = Etablissement.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+      puts "We couldn't find that record"
+      redirect_to root_path
+    end
   end
-
-
 
 end

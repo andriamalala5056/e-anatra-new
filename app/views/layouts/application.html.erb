@@ -5,6 +5,7 @@
 		<%= csrf_meta_tags %>
 		<%= csp_meta_tag %>
 		<meta charset="utf-8">
+		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -67,16 +68,46 @@
 						Trouver son école
 					</a>
 				</li>
-				
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="signin.html#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Agents
+
+				<li class="nav-item">
+					<a class="nav-link" href="/articles" role="button" aria-haspopup="true" aria-expanded="false">
+						Blog
 					</a>
-					<div class="dropdown-menu">
-						<a href="agent_list.html" class="dropdown-item">Agent List</a>
-						<a href="agent.html" class="dropdown-item">Agent Profile</a>
-					</div>
 				</li>
+				<% if user_signed_in? %>
+					<% if current_user.role=="responsable" %>
+						<% if session[:etab_id] != nil %>
+							<li class="nav-item">
+								<a class="nav-link" href="<%= etablissement_path(session[:etab_id]) %>" role="button" aria-haspopup="true" aria-expanded="false">
+									Votre établissement
+								</a>
+							</li>
+						<% else %>
+							<li class="nav-item">
+								<a class="nav-link" href="<%= new_etablissement_path %>" role="button" aria-haspopup="true" aria-expanded="false">
+									Créer votre établissement 
+								</a>
+							</li>
+        				<% end %>
+    				<% end %>
+				<% end %>
+				
+				<% if user_signed_in? %>
+					<% if current_user.role=="responsable" %>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="<%= filieres_path %>" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Filières
+							</a>
+							<div class="dropdown-menu">
+								<% if session[:etab_id] != nil %>
+									<a href="<%= new_filiere_path %>" class="dropdown-item">Créer filière</a>
+									<a href="<%= filiere_path(session[:etab_id]) %>" class="dropdown-item">Vos filières</a>
+								<% end %>
+							</div>
+						</li>
+    				<% end %>
+				<% end %>
+
 				
 				<li class="nav-item dropdown megamenu">
 					<a class="nav-link dropdown-toggle" href="signin.html#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -226,46 +257,51 @@
                    <div class="col-lg-3">
                         <p><span class="icon-uilove icon-uilove-realestate"></span></p>
                         <address class="mb-3">
-                               <strong>e-anatra</strong><br>
+                               <strong>Twitter, Inc.</strong><br>
                                101 Antananarivo, Pullman Ivandry<br>
                                Madagascar<br>
-                               <abbr title="Phone">P:</abbr> (261) 34-92-785-51
+                               <abbr title="Phone">P:</abbr> (261) 34-927-51
                         </address>
                         <div class="footer-social mb-4"><a href="#" class="ml-2 mr-2"><span class="fa fa-twitter"></span></a> <a href="https://www.facebook.com/E-anatra-178591866120655" target="_blank" class="ml-2 mr-2"><span class="fa fa-facebook"></span></a> <a href="#" class="ml-2 mr-2"><span class="fa fa-instagram"></span></a></div>
                    </div>
                    <div class="col-lg-2 col-sm-4">
                         <div class="footer-links">
                                <ul class="list-unstyled">
-                                    <li class="list-title"><a href="index.html#">A propos</a></li>
-                                    <li><a href="index.html#">Contact</a></li>
-                                    <li><a href="index.html#">Communauté</a></li>
+                                    <li class="list-title"><a href="index.html#">About</a></li>
+                                    <li><a href="index.html#">Company</a></li>
+                                    <li><a href="index.html#">Community</a></li>
                                 </ul>
                         </div>
                    </div>
                    <div class="col-lg-2 col-sm-4">
                         <div class="footer-links">
                                <ul class="list-unstyled">
-                                    <li class="list-title"><a href="#">Liens</a></li> 
-                                    <li><a href="#">Etablissements</a></li>
-                                    <li><a href="#">Province</a></li>
-                                    <li><a href="#">Administration</a></li>
-                                    <li><a href="#">Fillières</a></li>
+                                    <li class="list-title"><a href="#">Links</a></li>
+                                    <li><a href="#">For Rent</a></li>
+                                    <li><a href="#">For Sale</a></li>
+                                    <li><a href="#">Commercial</a></li>
+                                    <li><a href="#">Agents</a></li>
+                                    <li><a href="#">Property Guides</a></li>
+                                    <li><a href="#">Jobs</a></li>
                                </ul>
                         </div>
                    </div>
                    <div class="col-lg-2 col-sm-4">
                         <div class="footer-links">
                                <ul class="list-unstyled">
-                                	<li class="list-title"><a href="#">Aide</a></li>
-									<li><a href="#">FAQ</a></li>
-									<li><a href="#">"Save the Date"</a></li>
+                                    <li class="list-title"><a href="#">Help</a></li>
+                                    <li><a href="#">Payments</a></li>
+                                    <li><a href="#">Shipping</a></li>
+                                    <li><a href="#">Cancellation</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                    <li><a href="#">Report</a></li>
                                </ul>
                         </div>
                    </div>
                    <div class="col-lg-3">
                         <div class="text-lg-right ml-lg-2">
                                <form action="" methode = "POST">
-                                    <div class="list-title">Inscrivez-vous</div>
+                                    <div class="list-title">Subscribe</div>
                                     <div class="input-group input-group-lg">
                                            <input type="text" name="email" class="form-control form-control-lg subscribe-input" placeholder="Email">
                                            <div class="input-group-append ml-0">
