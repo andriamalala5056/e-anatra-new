@@ -1,2 +1,25 @@
 <h1>Articles#edit</h1>
-<p>Find me in app/views/articles/edit.html.erb</p>
+
+<div class="container">
+    <%= form_for @article do |a| %>
+
+        <fieldset class="form-group">
+            <label for="titre">Titre</label>
+            <%= a.text_field :titre %>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="titre">Message</label>
+            <%= a.text_field :message %>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="photo">Photo</label>
+            <%= a.text_field :photo %>
+        </fieldset>
+
+        <%= a.submit "Modifier", class: "btn btn-primary" %>
+    <% end %>
+    <div><a href="<%= articles_path %>">Voir tous les Articles</a></div>
+</div>
+

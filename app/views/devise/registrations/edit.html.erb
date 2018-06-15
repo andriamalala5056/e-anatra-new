@@ -1,55 +1,63 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= image_tag current_user.image_url %>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col col-md-12 col-lg-10 col-xl-8">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="register.html#">Home</a></li>
+          <li class="breadcrumb-item"><a href="register.html#">Account</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Edit</li>
+        </ol>
+      </nav>
+      <div class="page-header">
+        <h1>Modifier mon compte</h1>
+      </div>
+    </div>
   </div>
+</div>
+<div id="content">
+  <div class="container">
+    <div class="row justify-content-md-center align-items-center">
+      <div class="col col-md-12  col-lg-10 col-xl-8">
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="login">
+            <form>
 
+              <div class="form-group">
+                <%= image_tag(current_user.image.url, class: "user-profile-edit") %>
+              </div>
 
-  <div class="field">
-    <%= f.label :image %><br />
-    <%= f.file_field :image %>
+              <div class="form-group">
+                <label for="image">Importer votre photo de profil</label><br>
+                <%= f.file_field :image %>
+              </div>
+
+              <div class="form-group">
+                <label for="e-mail">E-mail</label>
+                <%= f.email_field :email, autofocus: true, class: "form-control form-control-lg" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :password %> <i>(veuillez laisser vide si vous ne souheitez pas modifier)</i><br />
+                <%= f.password_field :password, autocomplete: "off", class: "form-control form-control-lg" %>
+              </div>
+              <div class="form-group">
+                <label for="password">Confirmer le nouveau mot de passe</label>
+                <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control form-control-lg" %>
+              </div>
+              <div class="form-group">
+                <label for="password">Saisissez votre mot de passe actuel pour confirmer les changements</label>
+                <%= f.password_field :current_password, autocomplete: "off", class: "form-control form-control-lg" %>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg">Apliquer</button>
+            </form>
+          </div>
+        </div>
+        <div> </div>
+      </div>
+      
+    </div>
   </div>
+</div>
 
-
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>

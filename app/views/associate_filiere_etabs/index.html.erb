@@ -1,11 +1,12 @@
 <table>
     <thead>
-        <th>Filière</th><th>Description</th><th></th>
+        <th>Filière</th><th>Niveau</th><th>Nombre place</th><th></th>
     </thead>
     <% @f_etab.each do |assoc| %>
         <tr>
             <td><%= assoc.filiere.nom %></td>
-            <td><%= assoc.filiere.description %></td>
+            <td><%= assoc.level.niveau %></td>
+            <td><%= assoc.place %></td>
             <td>
                 <a href="<%= associate_filiere_etab_path(assoc.id) %>" class="btn btn-danger" data-confirm="Êtes vous sur ?" data-method="DELETE">Supprimer</a>
             </td>

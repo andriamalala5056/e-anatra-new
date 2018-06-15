@@ -11,8 +11,8 @@
     <div class="row justify-content-md-center">
       <div class="col col-md-12 col-lg-12 col-xl-10">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="property_single.html#">Accueil</a></li>
-          <li class="breadcrumb-item"><a href="property_single.html#">Etablissements</a></li>
+          <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+          <li class="breadcrumb-item"><a href="/etablissements">Etablissements</a></li>
           <li class="breadcrumb-item active" aria-current="page"><%= @etablissement.nom %></li>
         </ol>
         <div class="page-header bordered mb0">
@@ -36,72 +36,16 @@
             <div class="col-md-7 col-lg-8">
               <div>
                 <div class="item-gallery">
-                  <div class="swiper-container gallery-top" data-pswp-uid="1">
-                    <div class="swiper-wrapper lazyload">
-                      
-                      <div class="swiper-slide">
-                        <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject"> <a href="/img/demo/property/1.jpg" itemprop="contentUrl" data-size="2000x1414"> <img src="/img/demo/property/1.jpg" class="img-fluid swiper-lazy" alt="Drawing Room"> </a> </figure>
-                      </div>
-                      <div class="swiper-slide">
-                        <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject"> <a href="/img/demo/property/2.jpg" itemprop="contentUrl" data-size="2000x1414"> <img data-src="img/demo/property/2.jpg" src="http://uilove.in/realestate/listo/preview/img/spacer.png" class="img-fluid swiper-lazy" alt="Drawing Room"> </a> </figure>
-                      </div>
-                      <div class="swiper-slide">
-                        <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject"> <a href="/img/demo/property/3.jpg" itemprop="contentUrl" data-size="2000x1414"> <img data-src="img/demo/property/3.jpg" src="http://uilove.in/realestate/listo/preview/img/spacer.png" class="img-fluid swiper-lazy" alt="Drawing Room"> </a> </figure>
-                      </div>
-                      <div class="swiper-slide">
-                        <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject"> <a href="/img/demo/property/4.jpg" itemprop="contentUrl" data-size="2000x1414"> <img data-src="img/demo/property/4.jpg" src="http://uilove.in/realestate/listo/preview/img/spacer.png" class="img-fluid swiper-lazy" alt="Drawing Room"> </a> </figure>
-                      </div>
-                      <div class="swiper-slide">
-                        <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject"> <a href="/img/demo/property/5.jpg" itemprop="contentUrl" data-size="2000x1414"> <img data-src="img/demo/property/5.jpg" src="http://uilove.in/realestate/listo/preview/img/spacer.png" class="img-fluid swiper-lazy" alt="Drawing Room"> </a> </figure>
-                      </div>
-                      
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                  </div>
-                  <div class="swiper-container gallery-thumbs">
-                    <div class="swiper-wrapper">
-                      <div class="swiper-slide"><img src="http://uilove.in/realestate/listo/preview/img/demo/property/thumb/1.jpg" class="img-fluid" alt=""></div>
-                      <div class="swiper-slide"><img src="http://uilove.in/realestate/listo/preview/img/demo/property/thumb/2.jpg" class="img-fluid" alt=""></div>
-                      <div class="swiper-slide"><img src="http://uilove.in/realestate/listo/preview/img/demo/property/thumb/3.jpg" class="img-fluid" alt=""></div>
-                      <div class="swiper-slide"><img src="http://uilove.in/realestate/listo/preview/img/demo/property/thumb/4.jpg" class="img-fluid" alt=""></div>
-                      <div class="swiper-slide"><img src="http://uilove.in/realestate/listo/preview/img/demo/property/thumb/5.jpg" class="img-fluid" alt=""></div>
-                      <div class="swiper-slide"><img src="http://uilove.in/realestate/listo/preview/img/demo/property/thumb/6.jpg" class="img-fluid" alt=""></div>
-                      <div class="swiper-slide"><img src="http://uilove.in/realestate/listo/preview/img/demo/property/thumb/7.jpg" class="img-fluid" alt=""></div>
-                      <div class="swiper-slide"><img src="http://uilove.in/realestate/listo/preview/img/demo/property/thumb/8.jpg" class="img-fluid" alt=""></div>
-                      <div class="swiper-slide"><img src="http://uilove.in/realestate/listo/preview/img/demo/property/thumb/9.jpg" class="img-fluid" alt=""></div>
-                    </div>
-                  </div>
+                  <%= image_tag @etablissement.image_etablissement.url(:large), class: "img-fluid", alt: ""%>
                 </div>
                 <div>
-                  <!--ul class="item-features">
-                    <li><span>540</span> sq m </li>
-                    <li><span>3</span> Rooms </li>
-                    <li><span>1</span> Bedrooms </li>
-                    <li><span>2</span> Bathrooms </li>
-                  </ul-->
                   <div class="item-description">
                     <h3 class="headline">Description sur <%= @etablissement.nom %></h3>
                     <p><%= @etablissement.description %></p>
                     
                   </div>
-                  <h3 class="headline">Property Details</h3>
-                  <ul class="checked_list feature-list">
-                    <li><strong>Building Age:</strong> 2 Years</li>
-                    <li><strong>Parking:</strong> Attached Garage</li>
-                    <li><strong>Cooling:</strong> Central Cooling</li>
-                    <li><strong>Heating:</strong> Forced Air, Gas</li>
-                    <li><strong>Sewer:</strong> Public/City</li>
-                    <li><strong>Water:</strong> City</li>
-                  </ul>
-                  <h3 class="headline">Property Features</h3>
-                  <ul class="checked_list feature-list">
-                    <li>Alarm</li>
-                    <li>Gym</li>
-                    <li>Internet</li>
-                    <li>Swimming Pool</li>
-                    <li>Window Covering</li>
-                  </ul>
+                  
+                  
                   <div class="item-navigation">
                     <ul class="nav nav-tabs v2" role="tablist">
                       <li role="presentation"><a href="property_single.html#map" aria-controls="map" role="tab" data-toggle="tab" class="active"><i class="fa fa-map"></i> <span class="hidden-xs">Map &amp; nearby</span></a></li>
@@ -126,39 +70,6 @@
               <div class="col-md-5 col-lg-4">
                 <div id="sidebar" class="sidebar-right">
                   <div class="sidebar_inner">
-                    <!--div id="feature-list" role="tablist">
-                      <div class="card">
-                        <div class="card-header" role="tab" id="headingOne">
-                          <h4 class="panel-title"> <a role="button" data-toggle="collapse" href="property_single.html#specification" aria-expanded="true" aria-controls="specification"> Informations <i class="fa fa-info float-right"></i> </a> </h4>
-                        </div>
-                        <div id="specification" class="panel-collapse collapse show" role="tabpanel">
-                          <div class="card-body">
-                            <table class="table v1">
-                              <tr>
-                                <td>Bedrooms</td>
-                                <td>3</td>
-                              </tr>
-                              <tr>
-                                <td>Bathrooms</td>
-                                <td>2</td>
-                              </tr>
-                              <tr>
-                                <td>Covered area</td>
-                                <td>4590 sqft</td>
-                              </tr>
-                              <tr>
-                                <td>Total Area</td>
-                                <td>5600 sqft</td>
-                              </tr>
-                              <tr>
-                                <td>Floor</td>
-                                <td>Ground Floor</td>
-                              </tr>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                    </div-->
                     <div class="card shadow">
                       <h5 class="subheadline mt-0  mb-0">Informations</h5>
                       <div class="media">
@@ -166,14 +77,13 @@
                         <div class="media-body">
                           <p>Nom: <%= @etablissement.nom %></p>
                           <p>Catégorie: <%= @etablissement.category %></p>
-                          <p><i class="fa fa-map-marker"></i> <%= @etablissement.adress %></p>
-                          <p><i class="fa fa-envelope-o" aria-hidden="true"></i> <%= @etablissement.mail %></a></p>
-                          <p><i class="fa fa-phone" aria-hidden="true"></i> <%= @etablissement.telephone %></a></p>
+                          <p><i class="fa fa-map-marker"></i>&nbsp;<%= @etablissement.adress %></p>
+                          <p><i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;<%= @etablissement.mail %></a></p>
+                          <p><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;<%= @etablissement.telephone %></a></p>
+                          <p>Nombre de like: <%= @etablissement.likers_count %></a></p>
                         </div>
                       </div>
                       <a href="<%= @etablissement.dossier_a_fournir %>" class="btn btn-lg btn-primary btn-block">Dossiers à fournir</a>
-                      <div class="btn-group btn-group-justified" role="group"> 
-                        <a href="<%= likes_url(@etablissement) %>" class="btn btn-light" data-toggle="tooltip" title="Save to favorites"><i class="fa fa-star" aria-hidden="true"><%= @etablissement.likers_count %></i></a> <a href="property_single.html#" class="btn btn-light" data-toggle="tooltip" title="Print this page"><i class="fa fa-print" aria-hidden="true"></i></a> <a href="property_single.html#" class="btn btn-light" data-toggle="modal" data-target="#email-to-friend"><span data-toggle="tooltip" title="Email to Friend"><i class="fa fa-envelope-o" aria-hidden="true"></i></span></a> <a href="property_single.html#" class="btn btn-light" data-toggle="modal" data-target="#report-listing"><span data-toggle="tooltip" title="Report Listing"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span></a> </div>
                     </div>
                   </div>
                 </div>
@@ -323,7 +233,7 @@ $(function(){
     var latlng = new google.maps.LatLng('<%= @etablissement.latitude %>', '<%= @etablissement.longitude %>')
 
     var map = new google.maps.Map(document.getElementById('map'),{
-        zoom : 10,
+        zoom : 18,
         center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });

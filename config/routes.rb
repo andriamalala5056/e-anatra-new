@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   
-  get 'map/new'
-  get 'map/show'
-  get 'map/edit'
+  get '/direct_message', to: 'bot_twitter#direct_message'
+  get '/get_followers', to: 'bot_twitter#get_followers'
+  get '/get_screen_name', to: 'bot_twitter#get_screen_name'
+  get '/send_public_tweet', to: 'bot_twitter#send_public_tweet'
+  get '/send_private_tweet', to: 'bot_twitter#send_private_tweet'
+  resources :levels
   devise_for :users
   root 'home#index'
   resources :etablissements

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_13_080222) do
+ActiveRecord::Schema.define(version: 2018_06_14_113936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,11 @@ ActiveRecord::Schema.define(version: 2018_06_13_080222) do
     t.bigint "etablissement_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "level_id"
+    t.integer "place"
     t.index ["etablissement_id"], name: "index_associate_filiere_etabs_on_etablissement_id"
     t.index ["filiere_id"], name: "index_associate_filiere_etabs_on_filiere_id"
+    t.index ["level_id"], name: "index_associate_filiere_etabs_on_level_id"
   end
 
   create_table "associate_niveau_etabs", force: :cascade do |t|
@@ -41,15 +44,6 @@ ActiveRecord::Schema.define(version: 2018_06_13_080222) do
     t.datetime "updated_at", null: false
     t.index ["etablissement_id"], name: "index_associate_niveau_etabs_on_etablissement_id"
     t.index ["niveau_id"], name: "index_associate_niveau_etabs_on_niveau_id"
-  end
-
-  create_table "associate_niveausup_filieres", force: :cascade do |t|
-    t.bigint "niveausup_id"
-    t.bigint "filiere_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["filiere_id"], name: "index_associate_niveausup_filieres_on_filiere_id"
-    t.index ["niveausup_id"], name: "index_associate_niveausup_filieres_on_niveausup_id"
   end
 
   create_table "associate_user_etabs", force: :cascade do |t|
@@ -81,11 +75,11 @@ ActiveRecord::Schema.define(version: 2018_06_13_080222) do
     t.integer "image_etablissement_file_size"
     t.datetime "image_etablissement_updated_at"
     t.integer "likers_count", default: 0
+    t.integer "responsable_id"
   end
 
   create_table "filieres", force: :cascade do |t|
     t.string "nom"
-    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -98,6 +92,12 @@ ActiveRecord::Schema.define(version: 2018_06_13_080222) do
     t.datetime "created_at"
     t.index ["followable_id", "followable_type"], name: "fk_followables"
     t.index ["follower_id", "follower_type"], name: "fk_follows"
+  end
+
+  create_table "levels", force: :cascade do |t|
+    t.string "niveau"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "likes", id: :serial, force: :cascade do |t|
@@ -123,13 +123,6 @@ ActiveRecord::Schema.define(version: 2018_06_13_080222) do
   create_table "niveaus", force: :cascade do |t|
     t.string "niveau"
     t.integer "place"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "niveausups", force: :cascade do |t|
-    t.string "niveau"
-    t.integer "nb_place"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -163,10 +156,9 @@ ActiveRecord::Schema.define(version: 2018_06_13_080222) do
   add_foreign_key "articles", "etablissements"
   add_foreign_key "associate_filiere_etabs", "etablissements"
   add_foreign_key "associate_filiere_etabs", "filieres"
+  add_foreign_key "associate_filiere_etabs", "levels"
   add_foreign_key "associate_niveau_etabs", "etablissements"
   add_foreign_key "associate_niveau_etabs", "niveaus"
-  add_foreign_key "associate_niveausup_filieres", "filieres"
-  add_foreign_key "associate_niveausup_filieres", "niveausups"
   add_foreign_key "associate_user_etabs", "etablissements"
   add_foreign_key "associate_user_etabs", "users"
 end

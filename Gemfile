@@ -34,6 +34,8 @@ gem 'paperclip'
 gem 'kaminari'
 gem 'socialization'
 gem 'ransack'
+gem 'twitter'
+gem 'dotenv'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
