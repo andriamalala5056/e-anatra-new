@@ -1,17 +1,46 @@
-<h1>Articles#show</h1>
-<table>
-    <thead>
-        <th>TIRE</th><th>MESSAGE</th><th>PHOTO</th><th></th><th></th>
-    </thead>
-    <% @article.each do |a| %>
-        <tr>
-            <td><%= a.titre %></td>
-            <td><%= a.message %></td>
-            <td><%= a.photo %></td>
-            <td><%= link_to "Modifier", edit_article_path(a.id), class: "btn btn-info" %></td>
-            <td>
-                <a href="<%= article_path(a.id) %>" class="btn btn-danger" data-confirm="Êtes vous sur ?" data-method="DELETE">Supprimer</a>
-            </td>
-            </tr>
-    <% end %>
-</table>
+<div id="content">
+    <div class="container">
+       <div class="row justify-content-md-center">
+          <div class="col col-lg-12 col-xl-10">
+             <div class="row has-sidebar">
+                <div class="col-md-7 col-lg-8 col-xl-8">
+                   <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb">
+                         <li class="breadcrumb-item"><a href="/">Home</a></li>
+                         <li class="breadcrumb-item"><a href="/articles">Blog</a></li>
+                         <li class="breadcrumb-item active" aria-current="page"><%= @article.titre %></li>
+                      </ol>
+                   </nav>
+                   <div class="page-header v2 bordered">
+                      <h1><%= @article.titre %></h1>
+                   </div>
+                   <div class="clearfix"></div>
+                   <img src="img/demo/property/2.jpg" class="img-fluid" alt="">
+                   <div class="item-meta-info"><span class="date"><%= @article.created_at  %></span><span class="author">par <%= @article.etablissement.nom  %></span></div><br>
+                   <div class="item-detail">
+                      <%= image_tag @article.photo_url(:large) %>
+                   </div><br>
+                   <div class="item-detail">
+                      <p><%= @article.message %></p>
+                   </div>
+                   <div class="socal-share-buttons">
+                      <h3 class="subheadline">Share this article on:</h3>
+                      <a href="blog_single.html#" class="btn btn-social btn-facebook"><i class="icon fa fa-facebook"></i> Facebook</a> <a href="blog_single.html#" class="btn btn-social btn-google"><i class="icon fa fa-google"></i> Google</a> <a href="blog_single.html#" class="btn btn-social btn-twitter"><i class="icon fa fa-twitter"></i> Twitter</a> 
+                   </div>
+                </div>
+                <div class="col-md-5 col-lg-4 col-xl-4 col-sidebar">
+                   <div id="sidebar" class="sidebar-right">
+                      <div class="sidebar_inner">
+                         <h3 class="subheadline">Actions</h3>
+                         <div class="list-group no-border">
+                            <%= link_to "Modifier", edit_article_path(@article.id), class: "list-group-item" %>
+                            <a href="<%= article_path(@article.id) %>" data-confirm="Êtes vous sur ?" data-method="DELETE" class="list-group-item">Supprimer</a>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+</div>

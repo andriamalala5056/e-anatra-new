@@ -3,7 +3,7 @@ class EtablissementsController < ApplicationController
 
   def index
     @q = Etablissement.ransack(params[:q])
-    @etablissements = @q.result.page(params[:page]).per(8)
+    @etablissements = @q.result.page(params[:page]).per(10)
   end
 
   def show
@@ -141,3 +141,33 @@ class EtablissementsController < ApplicationController
   end
 
 end
+
+
+=begin
+  
+
+                                 <!--a href="<%= etablissement_path(@etablissements.last.id) %>">
+                          <div class="col-lg-6">
+                            <div class="item">
+                              <div class="item-image">
+                                  <%= image_tag @etablissements.last.image_etablissement.url(#:thumb), class: "img-fluid" %>
+                                  <% #if @etablissements.last.category? %>
+                                  <div class="item-badges">
+                                    <div class="item-badge-left"><%= @etablissements.last.category %></div>
+                                  </div>
+                                  <% #end %>
+                                <a href="<%= etablissement_path(@etablissements.last.id) %>"></a>
+                              </div>
+                            <div class="item-info">
+                              <h3 class="item-title"><%= @etablissements.last.nom %></h3>
+                              <div class="item-location"><i class="fa fa-map-marker"></i>&nbsp;
+<%= @etablissements.last.adress %></div>
+                                 <a href="<%= likes_path(@etablissements.last)%>">
+                              <div class="item-details-i"><i class="fa fa-thumbs-up"></i>&nbsp;
+<%= @etablissements.last.likers_count %> </div>
+                                 </a>
+                            </div>
+                            </div>
+                          </div>
+                        </a -->
+=end

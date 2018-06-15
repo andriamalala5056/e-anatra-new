@@ -272,3 +272,7 @@ body {
   width: 150px;
   height: 150px;
 }
+
+.footer_logo {
+  max-width: 60px;
+}
