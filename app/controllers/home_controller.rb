@@ -20,6 +20,8 @@ class HomeController < ApplicationController
 				end
 				
 			end
+
 		end
+		
 	end
 end

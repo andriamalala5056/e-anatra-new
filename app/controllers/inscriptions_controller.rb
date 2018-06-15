@@ -4,6 +4,13 @@ class InscriptionsController < ApplicationController
   end
 
   def show
+    if user_signed_in?
+      if current_user.role == "responsable"
+        if session[:etab_id]
+          @inscriptions= Inscription.where(etablissement_id: session[:etab_id])
+        end
+      end
+    end
   end
 
   def new
@@ -41,20 +48,19 @@ class InscriptionsController < ApplicationController
       end
       if test 
           #ok
-              #tout les inscrits dans une établissement donné
+          #tout les inscrits dans une établissement donné
         @inscrit = Inscription.where(etablissement_id: @etab.id)
         couple =false
         @inscrit.each do |assoc|
-          # si l'etudiant en question est déjà inscrit dans une session donné
-            if assoc.user_id == current_user && assoc.vague_id == @vague
+          if ((assoc.user == current_user) && (assoc.vague == @vague) && (assoc.etablissement == @etablissement) && (assoc.province == @province) && (assoc.filiere == @filiere) && (assoc.level == @level))
                 # couple déjà existé
                 couple = true
-            end
+          end
         end
 
         # couple déjà existé
-        if couple 
-            flash[:error] = "Efa voasoratra ianao!"
+        if couple
+            flash[:error] = "Vous êtes déjà inscrit!"
             redirect_to etablissement_path(@etab.id)
         else
             inscri = Inscription.new()

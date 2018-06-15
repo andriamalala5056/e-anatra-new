@@ -111,7 +111,7 @@
 				
 				<li class="nav-item dropdown megamenu">
 					<a class="nav-link dropdown-toggle" href="signin.html#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Pages
+						Dashbord
 					</a>
 					<div class="dropdown-menu">
 						<div class="container">
@@ -120,64 +120,45 @@
 									<div class="row">
 										<div class="col-md-6 col-lg-3">
 											<ul class="list-unstyled">
-												<li class="title">Homepage</li>
-												<li><a href="index.html">Homepage 1</a></li>
-												<li><a href="index2.html">Homepage 2</a></li>
-												<li><a href="index3.html">Homepage 3</a></li>
-												<li><a href="index4.html">Homepage 4</a></li>
-												<li><a href="index5.html">Homepage 5</a></li>
-												<li><a href="index6.html">Homepage 6</a></li>
-												<li><a href="index7.html">Homepage 7</a></li>
-												<li class="title">Login Pages</li>
-												<li><a href="signin.html">Signin</a></li>
-												<li><a href="register.html">Register</a></li>
-												<li><a href="forgot-password.html">Forgot Password</a></li>
+												<li class="title">Filière</li>
+												<% if session[:etab_id] != nil %>
+													<li>
+														<a href="<%= new_filiere_path %>">Ajouter filière</a>
+													</li>
+													<li>
+														<a href="<%= filiere_path(session[:etab_id]) %>">Vos filières</a>
+													</li>
+
+												<% end %>
+												<li><a href="<%= filieres_path %>">Tout les filières existes</a></li>
 											</ul>
 										</div>
 										<div class="col-md-6 col-lg-3">
 											<ul class="list-unstyled">
-												<li class="title">Property Listing</li>
-												<li><a href="property_listing.html">List View</a></li>
-												<li><a href="property_grid.html">Grid View</a></li>
-												<li><a href="property_listing_map.html">Map View</a></li>
-												<li class="title">Single Property</li>
-												<li><a href="property_single.html">Single View 1</a></li>
-												<li><a href="property_single2.html">Single View 2</a></li>
-												<li><a href="property_single3.html">Single View 3</a></li>
+												<li class="title">Etablissement</li>
+												<% if session[:etab_id] != nil %>
+													<li>
+														<a href="<%= etablissement_path(session[:etab_id]) %>">Mon établissement</a>
+													</li>
+													
+												<% end %>
+												<li><a href="<%= etablissements_path %>">Tous les établissements</a></li>
 											</ul>
 										</div>
 										<div class="col-md-6 col-lg-3">
 											<ul class="list-unstyled">
-												<li class="title">Other Pages</li>
-												<li><a href="plans.html">Plans</a></li>
-												<li><a href="information_page.html">Information Page</a></li>
-												<li><a href="coming_soon.html">Coming Soon</a></li>
-												<li><a href="404_error.html">Error Page</a></li>
-												<li><a href="success.html">Success Page</a></li>
-												<li><a href="contact.html">Contact Page</a></li>
-												<li><a href="compare.html">Compare Properties</a></li>
-												<li class="title">Agent Pages</li>
-												<li><a href="agent_list.html">Agent List</a></li>
-												<li><a href="agent.html">Agent Profile</a></li>
+												<li class="title">Inscription</li>
+												<% if session[:etab_id] != nil %>
+													<li>
+														<a href="<%= inscription_path(session[:etab_id]) %>">Les élèves inscris</a>
+													</li>
+												<% end %>
+
+												<li><a href="<%= new_inscription_path %>">Inscription</a></li>
+											
 											</ul>
 										</div>
-										<div class="col-md-6 col-lg-3">
-											<ul class="list-unstyled">
-												<li class="title">Account Pages</li>
-												<li><a href="my_listing_add.html">Add Listing</a></li>
-												<li><a href="my_bookmarked_listings.html">Bookmarked Listing</a></li>
-												<li><a href="my_listings.html">My Listings</a></li>
-												<li><a href="my_profile.html">My Profile</a></li>
-												<li><a href="my_password.html">Change Password</a></li>
-												<li><a href="my_notifications.html">Notifications</a></li>
-												<li><a href="my_membership.html">Membership</a></li>
-												<li><a href="my_payments.html">Payments</a></li>
-												<li><a href="my_account.html">Account</a></li>
-												<li class="title">Blog Pages</li>
-												<li><a href="blog.html">Blog Archive</a></li>
-												<li><a href="blog_single.html">Blog Single</a></li>
-											</ul>
-										</div>
+									
 									</div>
 								</div>
 							</div>
