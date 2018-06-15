@@ -17,11 +17,19 @@
       <td><%= vague.rentree %></td>
       <td><%= vague.status %></td>
       <td><%= link_to 'Show', vague, class: "btn btn-success" %></td>
-      <td><%= link_to 'Edit', edit_vague_path(vague), class: "btn btn-warning" %></td>
-      <td><%= link_to 'Destroy', vague, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
-    </tr>
+      <% if user_signed_in? %>
+        <% if current_user.role == "admin" %>
+          <td><%= link_to 'Edit', edit_vague_path(vague), class: "btn btn-warning" %></td>
+          <td><%= link_to 'Destroy', vague, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        <% end %>
+      <% end %>
+      </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'New Vague', new_vague_path, class: "btn btn-secondary" %>
+<% if user_signed_in? %>
+    <% if current_user.role == "admin" %>
+      <%= link_to 'New Vague', new_vague_path, class: "btn btn-secondary" %>
+    <% end %>
+<% end %>
 </div>

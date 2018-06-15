@@ -4,6 +4,9 @@
   <strong>Niveau:</strong>
   <%= @level.niveau %>
 </p>
-
-<%= link_to 'Edit', edit_level_path(@level) %> |
-<%= link_to 'Back', levels_path %>
+<% if user_signed_in? %>
+      <% if current_user.role == "admin" %>
+          <%= link_to 'Edit', edit_level_path(@level) %> |
+      <% end %>
+<% end %>
+          <%= link_to 'Back', levels_path %>

@@ -3,21 +3,31 @@ class VaguesController < ApplicationController
   # GET /vagues
   # GET /vagues.json
   def index
-    @vagues = Vague.all
+      @vagues = Vague.all
   end
 
   # GET /vagues/1
   # GET /vagues/1.json
   def show
+    
   end
 
   # GET /vagues/new
   def new
-    @vague = Vague.new
+    if user_signed_in?
+      if current_user.role == "admin"
+        @vague = Vague.new
+      else
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /vagues/1/edit
   def edit
+    
   end
 
   # POST /vagues
