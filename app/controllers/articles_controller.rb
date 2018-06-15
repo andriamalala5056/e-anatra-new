@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
 
   def new
     if user_signed_in?
-      if session[:responsable]
+      if session[:responsable] 
         if session[:etab_id]
           @article = Article.new
         else

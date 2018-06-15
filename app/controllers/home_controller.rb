@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 		@etablissements=Etablissement.page(1).per(6)
 		UserMailer.welcome_email(nil).deliver_now
 		if user_signed_in?
-			if current_user.role=="responsable"
+			if current_user.role=="responsable" || current_user.role == "admin"
 				session[:responsable] = 1
 				@a = AssociateUserEtab.all
 				#test = false
